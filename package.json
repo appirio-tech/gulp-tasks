@@ -1,5 +1,5 @@
 {
-  "name": "appirio",
+  "name": "appirio-gulp-tasks",
   "version": "0.0.1",
   "description": "",
   "engines": {
@@ -35,5 +35,9 @@
     "karma-sinon": "^1.0.3",
     "main-bower-files": "^2.5.0",
     "opn": "^1.0.0"
-  }
+  },
+  "ignore": [
+    "app",
+    "tests"
+  ]
 }
