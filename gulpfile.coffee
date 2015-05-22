@@ -3,12 +3,14 @@ $             = require('gulp-load-plugins')()
 $.browserSync = require 'browser-sync'
 $.karma       = require('karma').server
 
-karmaFiles = [
-  'bower_components/jquery/dist/jquery.js'
-  '.tmp/scripts/json-fixtures.js'
-  'app/scripts/**/*.coffee'
-  'tests/specs/**/*.coffee'
-]
+karmaConfig =
+  configFile  : __dirname + '/karma.conf.coffee'
+  appFiles    : 'app/**/*.coffee'
+  specFiles   : 'tests/specs/**/*.coffee'
+  dependencies: [
+    'bower_components/jquery/dist/jquery.js'
+    '.tmp/scripts/json-fixtures.js'
+  ]
 
 fixtureFiles = [
   'app/**/*.json'
@@ -18,13 +20,11 @@ configs =
   coffeeFiles   : 'app/**/*.coffee'
   jadeFiles     : 'app/**/*.jade'
   scssFiles     : 'app/**/*.scss'
-  specFiles     : 'tests/specs/**/*.coffee'
   tempFolder    : '.tmp'
   appFolder     : 'app'
   distFolder    : 'dist'
-  karmaFiles    : karmaFiles
+  karma         : karmaConfig
   fixtureFiles  : fixtureFiles
-  karmaConfig   : __dirname + '/karma.conf.coffee'
   coverageReporter:
     type: 'lcov'
     dir: 'coverage'
