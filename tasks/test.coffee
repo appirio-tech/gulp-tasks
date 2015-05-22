@@ -13,8 +13,8 @@ module.exports = (gulp, $, configs) ->
 
     $.karma.start options
 
-  gulp.task 'test', ['constants', 'fixtures'], ->
+  gulp.task 'test', ['ng-constant', 'fixtures'], ->
     runTest()
 
-  gulp.task 'test-server', ['constants', 'fixtures'], ->
+  gulp.task 'test-server', ['ng-constant', 'fixtures'], ->
     runTest false, false
