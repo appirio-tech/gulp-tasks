@@ -1,0 +1,11 @@
+{
+  "name": "Gulp Tasks",
+  "license": "",
+  "ignore": [
+    "node_modules",
+    "bower_components"
+  ],
+  "devDependencies": {
+    "jquery": "~2.1.4"
+  }
+}
