@@ -1,17 +1,16 @@
 module.exports = (gulp, $, configs) ->
   runTest = (singleRun = true, coverage = true) ->
     preprocessors = {}
-    preprocessors[configs.karma.appFiles]  = if coverage then 'coverage' else 'coffee'
-    preprocessors[configs.karma.specFiles] = 'coffee'
+    preprocessors[configs.karma.coverage]  = if coverage then 'coverage' else 'coffee'
 
-    files = configs.karma.dependencies.concat configs.karma.appFiles
-    files = files.concat configs.karma.specFiles
+    for coffeeFile in configs.karma.coffeeFiles
+      preprocessors[coffeeFile] = 'coffee'
 
     options =
       configFile      : configs.karma.configFile
       singleRun       : singleRun
       preprocessors   : preprocessors
-      files           : files
+      files           : configs.karma.files
       coverageReporter: configs.coverageReporter
 
     $.karma.start options

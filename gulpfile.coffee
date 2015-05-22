@@ -5,11 +5,13 @@ $.karma       = require('karma').server
 
 karmaConfig =
   configFile  : __dirname + '/karma.conf.coffee'
-  appFiles    : 'app/**/*.coffee'
-  specFiles   : 'tests/specs/**/*.coffee'
-  dependencies: [
+  coverage    : 'app/**/*.coffee'
+  coffeeFiles : ['tests/specs/**/*.coffee'] # Dont include coverage files
+  files: [
     'bower_components/jquery/dist/jquery.js'
     '.tmp/scripts/json-fixtures.js'
+    'app/**/*.coffee'
+    'tests/specs/**/*.coffee'
   ]
 
 fixtureFiles = [
