@@ -34,6 +34,8 @@
     "karma-phantomjs-launcher": "^0.1.4",
     "karma-sinon": "^1.0.3",
     "main-bower-files": "^2.5.0",
+    "node-bourbon": "^4.2.1-beta1",
+    "node-neat": "^1.7.1-beta1",
     "opn": "^1.0.0"
   },
   "ignore": [

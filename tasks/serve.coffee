@@ -14,9 +14,8 @@ module.exports = (gulp, $, configs) ->
     $.browserSync options
 
     watchFiles = [
-      configs.jadeFiles
-      configs.scssFiles
-      configs.coffeeFiles
+      configs.tempFolder + '/**/*.{js,css,html}'
+      configs.appFolder + '/**/*.{js,css,html}'
     ]
 
     gulp.watch(watchFiles).on 'change', $.browserSync.reload

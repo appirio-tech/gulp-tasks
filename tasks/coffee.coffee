@@ -9,7 +9,6 @@ module.exports = (gulp, $, configs) ->
     coffee  = $.coffee bare: false
     plumber = $.plumber errorHandler: onError
     src     = gulp.src configs.coffeeFiles
-    reload  = $.browserSync.reload stream: true
     dest    = gulp.dest configs.tempFolder
 
-    src.pipe(plumber).pipe(coffee).pipe(dest).pipe reload
+    src.pipe(plumber).pipe(coffee).pipe dest

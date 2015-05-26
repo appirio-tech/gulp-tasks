@@ -19,14 +19,15 @@ fixtureFiles = [
 ]
 
 configs =
-  coffeeFiles   : 'app/**/*.coffee'
-  jadeFiles     : 'app/**/*.jade'
-  scssFiles     : 'app/**/*.scss'
-  tempFolder    : '.tmp'
-  appFolder     : 'app'
-  distFolder    : 'dist'
-  karma         : karmaConfig
-  fixtureFiles  : fixtureFiles
+  coffeeFiles     : 'app/**/*.coffee'
+  jadeFiles       : 'app/**/*.jade'
+  scssFiles       : 'app/**/*.scss'
+  scssIncludePaths: require('node-neat').includePaths
+  tempFolder      : '.tmp'
+  appFolder       : 'app'
+  distFolder      : 'dist'
+  karma           : karmaConfig
+  fixtureFiles    : fixtureFiles
   coverageReporter:
     type: 'lcov'
     dir: 'coverage'

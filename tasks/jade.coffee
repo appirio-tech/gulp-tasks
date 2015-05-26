@@ -12,6 +12,5 @@ module.exports = (gulp, $, configs) ->
     plumber = $.plumber errorHandler: onError
     src     = gulp.src configs.jadeFiles
     dest    = gulp.dest configs.tempFolder
-    reload  = $.browserSync.reload stream: true
 
-    src.pipe(plumber).pipe(jade).pipe(dest).pipe reload
+    src.pipe(plumber).pipe(jade).pipe dest

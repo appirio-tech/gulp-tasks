@@ -16,6 +16,5 @@ module.exports = (gulp, $, configs) ->
     sourceMaps       = $.sourcemaps.init()
     soureceMapsWrite = $.sourcemaps.write()
     stop             = $.plumber.stop()
-    reload           = $.browserSync.reload stream: true
 
-    src.pipe(sourceMaps).pipe(scss).pipe(soureceMapsWrite).pipe(dest).pipe reload
+    src.pipe(sourceMaps).pipe(scss).pipe(soureceMapsWrite).pipe dest
