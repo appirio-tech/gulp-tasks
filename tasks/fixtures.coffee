@@ -1,13 +1,14 @@
 module.exports = (gulp, $, configs) ->
   gulp.task 'fixtures', ->
-    src  = gulp.src configs.fixtureFiles
-    dest = gulp.dest configs.tempFolder
+    if configs.fixtureFiles
+      src  = gulp.src configs.fixtureFiles
+      dest = gulp.dest configs.tempFolder
 
-    options =
-      postProcessors:
-        '**/*.json': 'json'
+      options =
+        postProcessors:
+          '**/*.json': 'json'
 
-    fixtures = $.fixtures2js 'scripts/json-fixtures.js', options
+      fixtures = $.fixtures2js 'scripts/json-fixtures.js', options
 
-    src.pipe(fixtures).pipe(dest)
+      src.pipe(fixtures).pipe(dest)
 

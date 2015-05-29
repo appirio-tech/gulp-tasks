@@ -18,5 +18,5 @@ module.exports = (gulp, $, configs) ->
   gulp.task 'test', ['ng-constant', 'fixtures'], ->
     runTest()
 
-  gulp.task 'test-server', ['ng-constant', 'fixtures'], ->
+  gulp.task 'test-serve', ['ng-constant', 'fixtures'], ->
     runTest false, false

@@ -1,16 +1,17 @@
 module.exports = (gulp, $, configs) ->
   gulp.task 'jade', ->
-    options =
-      pretty: false
+    if configs.jadeFiles
+      options =
+        pretty: false
 
-    onError = (errors) ->
-      red = $.util.colors.red 'Jade error'
-      $.util.beep()
-      $.util.log red
+      onError = (errors) ->
+        red = $.util.colors.red 'Jade error'
+        $.util.beep()
+        $.util.log red
 
-    jade    = $.jade options
-    plumber = $.plumber errorHandler: onError
-    src     = gulp.src configs.jadeFiles
-    dest    = gulp.dest configs.tempFolder
+      jade    = $.jade options
+      plumber = $.plumber errorHandler: onError
+      src     = gulp.src configs.jadeFiles
+      dest    = gulp.dest configs.tempFolder
 
-    src.pipe(plumber).pipe(jade).pipe dest
+      src.pipe(plumber).pipe(jade).pipe dest
