@@ -7,6 +7,7 @@ module.exports = (gulp, $, configs) ->
       preprocessors[coffeeFile] = 'coffee'
 
     options =
+      basePath        : configs.karma.basePath
       configFile      : configs.karma.configFile
       singleRun       : singleRun
       preprocessors   : preprocessors

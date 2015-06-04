@@ -3,6 +3,8 @@ module.exports = (gulp, $, configs) ->
     files = [
       configs.tempFolder + '/**'
       configs.distFolder + '/**'
+      configs.distFolder + '/**'
+      configs.coverageReporter.dir + '/**'
     ]
     src   = gulp.src files, read: false
     clean = $.clean()
