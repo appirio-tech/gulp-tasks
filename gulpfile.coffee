@@ -18,6 +18,12 @@ fixtureFiles = [
   'app/**/*.json'
 ]
 
+buildFiles =
+  copy: ['.tmp/index.html']
+  concat:
+    'main.js': ['.tmp/scripts/main.js', 'app/scripts/test.js']
+    'main.css': ['.tmp/styles/main.css', 'app/styles/test.css']
+
 configs =
   coffeeFiles     : 'app/**/*.coffee'
   jadeFiles       : 'app/**/*.jade'
@@ -28,6 +34,7 @@ configs =
   distFolder      : 'dist'
   karma           : karmaConfig
   fixtureFiles    : fixtureFiles
+  buildFiles      : buildFiles
   coverageReporter:
     type: 'lcov'
     dir: 'coverage'
