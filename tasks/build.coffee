@@ -19,7 +19,7 @@ module.exports = (gulp, $, configs) ->
 
   dependencies = [
     'ng-constant'
-    'jade'
+    'template-cache'
     'scss'
     'coffee'
   ]
