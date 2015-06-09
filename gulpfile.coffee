@@ -1,8 +1,3 @@
-gulp          = require 'gulp'
-$             = require('gulp-load-plugins')()
-$.browserSync = require 'browser-sync'
-$.karma       = require('karma').server
-
 karmaConfig =
   configFile  : __dirname + '/karma.conf.coffee'
   basePath    : __dirname
@@ -48,6 +43,13 @@ configs =
   coverageReporter:
     type: 'lcov'
     dir: 'coverage'
+
+### END CONFIG ###
+
+gulp          = require 'gulp'
+$             = require('gulp-load-plugins')()
+$.browserSync = require 'browser-sync'
+$.karma       = require('karma').server
 
 tasks = [
   'coffee'
