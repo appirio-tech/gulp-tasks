@@ -1,11 +1,11 @@
 {
   "name": "appirio-gulp-tasks",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "",
   "engines": {
     "node": ">=0.10.0"
   },
-  "devDependencies": {
+  "dependencies": {
     "autoprefixer-core": "^4.0.2",
     "browser-sync": "^1.8.2",
     "chai": "^2.3.0",
