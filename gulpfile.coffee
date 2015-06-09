@@ -19,10 +19,13 @@ fixtureFiles = [
   'app/**/*.json'
 ]
 
-templateCacheFiles = [
-  '.tmp/views/footer.html'
-  '.tmp/views/main.html'
-]
+templateCache =
+  files : [
+    '.tmp/views/footer.html'
+    '.tmp/views/main.html'
+  ]
+  root  : 'views/'
+  module: 'appirio-tech-messaging'
 
 buildFiles =
   copy: ['.tmp/index.html']
@@ -31,17 +34,17 @@ buildFiles =
     'main.css': ['.tmp/styles/main.css', 'app/styles/test.css']
 
 configs =
-  coffeeFiles       : 'app/**/*.coffee'
-  jadeFiles         : 'app/**/*.jade'
-  scssFiles         : 'app/**/*.scss'
-  scssIncludePaths  : require('node-neat').includePaths
-  tempFolder        : '.tmp'
-  appFolder         : 'app'
-  distFolder        : 'dist'
-  karma             : karmaConfig
-  fixtureFiles      : fixtureFiles
-  buildFiles        : buildFiles
-  templateCacheFiles: templateCacheFiles
+  coffeeFiles     : 'app/**/*.coffee'
+  jadeFiles       : 'app/**/*.jade'
+  scssFiles       : 'app/**/*.scss'
+  scssIncludePaths: require('node-neat').includePaths
+  tempFolder      : '.tmp'
+  appFolder       : 'app'
+  distFolder      : 'dist'
+  karma           : karmaConfig
+  fixtureFiles    : fixtureFiles
+  buildFiles      : buildFiles
+  templateCache   : templateCache
   coverageReporter:
     type: 'lcov'
     dir: 'coverage'
