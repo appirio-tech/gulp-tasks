@@ -4,7 +4,7 @@ $.browserSync = require 'browser-sync'
 $.karma       = require('karma').server
 
 karmaConfig =
-  configFile  : __dirname + '/tasks/karma.conf.coffee'
+  configFile  : __dirname + '/karma.conf.coffee'
   basePath    : __dirname
   coverage    : 'app/**/*.coffee'
   coffeeFiles : ['tests/specs/**/*.coffee'] # Dont include coverage files
