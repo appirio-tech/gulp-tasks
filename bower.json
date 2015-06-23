@@ -6,6 +6,7 @@
     "bower_components"
   ],
   "devDependencies": {
-    "jquery": "~2.1.4"
+    "jquery": "~2.1.4",
+    "appirio-tech-api-schemas": "git@github.com:appirio-tech/api-schemas#3.x.x"
   }
 }

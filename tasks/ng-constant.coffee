@@ -1,14 +1,24 @@
+defaultConstants =
+  API_URL         : 'https://api.topcoder-dev.com/v3'
+  API_URL_V2      : 'https://api.topcoder-dev.com/v2'
+  AVATAR_URL      : 'http://www.topcoder.com'
+  SUBMISSION_URL  : 'https://studio.topcoder.com'
+  AUTH0_CLIENT_ID : 'abc123'
+  AUTH0_DOMAIN    : 'topcoder-dev.auth0.com'
+  AUTH0_TOKEN_NAME: 'userJWTToken'
+
 module.exports = (gulp, $, configs) ->
   gulp.task 'ng-constant', ->
-    if configs.constants
-      options =
-        name     : 'app.constants'
-        constants: configs.constants
-        stream   : true
+    constants = configs.constants || defaultConstants
 
-      destPath = configs.tempFolder + '/scripts'
+    options =
+      name     : 'app.constants'
+      constants: constants
+      stream   : true
 
-      dest = gulp.dest destPath
+    destPath = configs.tempFolder + '/scripts'
 
-      $.ngConstant(options).pipe dest
+    dest = gulp.dest destPath
+
+    $.ngConstant(options).pipe dest
 

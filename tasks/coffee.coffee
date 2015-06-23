@@ -1,15 +1,20 @@
+defaultCoffeeFiles = 'app/**/*.coffee'
+defaultTempFolder  = '.tmp'
+
 module.exports = (gulp, $, configs) ->
+  coffeeFiles = defaultCoffeeFiles || configs.coffeeFiles
+  tempFolder  = configs.tempFolder || defaultTempFolder
+
   gulp.task 'coffee', ->
-    if configs.coffeeFiles
-      onError = ->
-        red = $.util.colors.red 'Coffee error'
-        $.util.beep()
-        $.util.log red
-        console.log arguments
+    onError = ->
+      red = $.util.colors.red 'Coffee error'
+      $.util.beep()
+      $.util.log red
+      console.log arguments
 
-      coffee  = $.coffee bare: false
-      plumber = $.plumber errorHandler: onError
-      src     = gulp.src configs.coffeeFiles
-      dest    = gulp.dest configs.tempFolder
+    coffee  = $.coffee bare: false
+    plumber = $.plumber errorHandler: onError
+    src     = gulp.src coffeeFiles
+    dest    = gulp.dest tempFolder
 
-      src.pipe(plumber).pipe(coffee).pipe dest
+    src.pipe(plumber).pipe(coffee).pipe dest

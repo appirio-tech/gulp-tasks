@@ -1,7 +1,11 @@
+defaultDistFolder = 'dist'
+
 module.exports = (gulp, $, configs) ->
+  distFolder = configs.distFolder || defaultDistFolder
+
   buildCopy = ->
     if configs.buildFiles?.copy
-      dest = gulp.dest configs.distFolder
+      dest = gulp.dest distFolder
 
       for path in configs.buildFiles.copy
         src = gulp.src path
@@ -13,7 +17,7 @@ module.exports = (gulp, $, configs) ->
       for to, from of configs.buildFiles.concat
         concated = $.concat to
         src      = gulp.src from
-        dest     = gulp.dest configs.distFolder
+        dest     = gulp.dest distFolder
 
         src.pipe(concated).pipe dest
 

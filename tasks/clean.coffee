@@ -1,12 +1,14 @@
+defaultCleanFiles = [
+  '.tmp'
+  'dist'
+  'coverage'
+]
+
 module.exports = (gulp, $, configs) ->
+  defaultCleanFiles = configs.cleanFiles || defaultCleanFiles
+
   gulp.task 'clean', ->
-    files = [
-      configs.tempFolder + '/**'
-      configs.distFolder + '/**'
-      configs.distFolder + '/**'
-      configs.coverageReporter.dir + '/**'
-    ]
-    src   = gulp.src files, read: false
+    src   = gulp.src defaultCleanFiles, read: false
     clean = $.clean()
 
     src.pipe clean
