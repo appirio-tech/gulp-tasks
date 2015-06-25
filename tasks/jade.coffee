@@ -5,7 +5,8 @@ module.exports = (gulp, $, configs) ->
         pretty: false
 
       onError = (errors) ->
-        red = $.util.colors.red 'Jade error'
+        red = $.util.colors.red errors.message
+
         $.util.beep()
         $.util.log red
 
