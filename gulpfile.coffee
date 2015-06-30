@@ -53,6 +53,7 @@ tasks = [
   'fixtures'
   'template-cache'
   'uglify'
+  'minify-css'
 ]
 
 for task in tasks
