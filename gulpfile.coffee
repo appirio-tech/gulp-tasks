@@ -52,6 +52,7 @@ tasks = [
   'coveralls'
   'fixtures'
   'template-cache'
+  'uglify'
 ]
 
 for task in tasks
