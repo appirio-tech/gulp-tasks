@@ -18,11 +18,6 @@ templateCache =
   root  : 'views/'
   module: 'appirio-tech-messaging'
 
-buildFiles =
-  copy: ['.tmp/index.html']
-  concat:
-    'main.js': ['.tmp/scripts/main.js', 'app/scripts/test.js']
-    'main.css': ['.tmp/styles/main.css', 'app/styles/test.css']
 
 configs =
   scssIncludePaths: require('node-neat').includePaths
@@ -30,7 +25,6 @@ configs =
   appFolder       : 'app'
   distFolder      : 'dist'
   karma           : karmaConfig
-  buildFiles      : buildFiles
   templateCache   : templateCache
 
 ### END CONFIG ###
@@ -55,6 +49,7 @@ tasks = [
   'uglify'
   'minify-css'
   'cdnify'
+  'finger-print'
 ]
 
 for task in tasks
