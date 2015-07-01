@@ -33,6 +33,7 @@ gulp          = require 'gulp'
 $             = require('gulp-load-plugins')()
 $.browserSync = require 'browser-sync'
 $.karma       = require('karma').server
+configs.env   = require './config'
 
 tasks = [
   'coffee'
