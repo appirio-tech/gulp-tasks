@@ -50,6 +50,7 @@ tasks = [
   'minify-css'
   'cdnify'
   'finger-print'
+  'finger-print-replace'
 ]
 
 for task in tasks
