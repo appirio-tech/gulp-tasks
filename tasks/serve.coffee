@@ -1,13 +1,17 @@
 module.exports = (gulp, $, configs) ->
   depedencies = ['ng-constant', 'fixtures', 'coffee', 'scss', 'jade']
 
+  baseDir = configs.baseDir || []
+  baseDir.push configs.tempFolder
+  baseDir.push configs.appFolder
+
   gulp.task 'serve', depedencies, ->
     options =
       open  : false
       notify: false
       port  : 9000
       server:
-        baseDir: [configs.tempFolder, configs.appFolder]
+        baseDir: baseDir
         routes:
           '/bower_components': 'bower_components'
 
