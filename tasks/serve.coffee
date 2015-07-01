@@ -1,3 +1,7 @@
+defaultSCSSFiles   = 'app/**/*.scss'
+defaultJadeFiles   = 'app/**/*.jade'
+defaultCoffeeFiles = 'app/**/*.coffee'
+
 module.exports = (gulp, $, configs) ->
   depedencies = ['ng-constant', 'fixtures', 'coffee', 'scss', 'jade']
 
@@ -24,6 +28,10 @@ module.exports = (gulp, $, configs) ->
 
     gulp.watch(watchFiles).on 'change', $.browserSync.reload
 
-    gulp.watch configs.scssFiles, ['scss']
-    gulp.watch configs.jadeFiles, ['jade']
-    gulp.watch configs.coffeeFiles, ['coffee']
+    scssFiles   = configs.scssFiles || defaultSCSSFiles
+    jadeFiles   = configs.jadeFiles || defaultJadeFiles
+    coffeeFiles = configs.coffeeFiles || defaultCoffeeFiles
+
+    gulp.watch scssFiles, ['scss']
+    gulp.watch jadeFiles, ['jade']
+    gulp.watch coffeeFiles, ['coffee']

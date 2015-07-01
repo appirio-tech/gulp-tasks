@@ -54,6 +54,7 @@ tasks = [
   'template-cache'
   'uglify'
   'minify-css'
+  'cdnify'
 ]
 
 for task in tasks
