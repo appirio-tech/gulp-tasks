@@ -1,3 +1,5 @@
+'use strict'
+
 configs =
   scssIncludePaths: require('node-neat').includePaths
   tempFolder      : '.tmp'
@@ -27,35 +29,6 @@ configs.templateCache =
 
 ### END CONFIG ###
 
-gulp          = require 'gulp'
-$             = require('gulp-load-plugins')()
-$.browserSync = require 'browser-sync'
-$.karma       = require('karma').server
-configs.env   = require './config'
+loadTasksModule = require './load-tasks.coffee'
 
-tasks = [
-  'coffee'
-  'jade'
-  'scss'
-  'clean'
-  'serve'
-  'build'
-  'test'
-  'ng-constant'
-  'coveralls'
-  'fixtures'
-  'template-cache'
-  'uglify'
-  'minify-css'
-  'cdnify'
-  'finger-print'
-  'finger-print-replace'
-]
-
-for task in tasks
-  module = require('./tasks/' + task)
-  module gulp, $, configs
-
-gulp.task 'default', ['clean'], ->
-  gulp.start 'build'
-
+loadTasksModule.loadTasks configs

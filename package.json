@@ -45,6 +45,7 @@
     "main-bower-files": "^2.5.0",
     "node-bourbon": "^4.2.1-beta1",
     "node-neat": "^1.7.1-beta1",
+    "node-env-file": "^0.1.7",
     "opn": "^1.0.0"
   },
   "ignore": [
