@@ -1,4 +1,5 @@
 defaultConstants =
+  apiUrl          : 'https://api.topcoder-dev.com/v3/' # slash is grandfathered in, need to remove
   API_URL         : 'https://api.topcoder-dev.com/v3'
   API_URL_V2      : 'https://api.topcoder-dev.com/v2'
   AVATAR_URL      : 'http://www.topcoder.com'

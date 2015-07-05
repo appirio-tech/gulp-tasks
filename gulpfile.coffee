@@ -1,4 +1,10 @@
-karmaConfig =
+configs =
+  scssIncludePaths: require('node-neat').includePaths
+  tempFolder      : '.tmp'
+  appFolder       : 'app'
+  distFolder      : 'dist'
+
+configs.karma =
   configFile  : __dirname + '/karma.conf.coffee'
   basePath    : __dirname
   coverage    : 'app/**/*.coffee'
@@ -10,7 +16,7 @@ karmaConfig =
     'tests/specs/**/*.coffee'
   ]
 
-templateCache =
+configs.templateCache =
   files : [
     '.tmp/views/footer.html'
     '.tmp/views/main.html'
@@ -18,14 +24,6 @@ templateCache =
   root  : 'views/'
   module: 'appirio-tech-messaging'
 
-
-configs =
-  scssIncludePaths: require('node-neat').includePaths
-  tempFolder      : '.tmp'
-  appFolder       : 'app'
-  distFolder      : 'dist'
-  karma           : karmaConfig
-  templateCache   : templateCache
 
 ### END CONFIG ###
 

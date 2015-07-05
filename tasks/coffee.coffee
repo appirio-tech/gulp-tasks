@@ -2,7 +2,7 @@ defaultCoffeeFiles = 'app/**/*.coffee'
 defaultTempFolder  = '.tmp'
 
 module.exports = (gulp, $, configs) ->
-  coffeeFiles = defaultCoffeeFiles || configs.coffeeFiles
+  coffeeFiles = configs.coffeeFiles || defaultCoffeeFiles
   tempFolder  = configs.tempFolder || defaultTempFolder
 
   gulp.task 'coffee', ->
