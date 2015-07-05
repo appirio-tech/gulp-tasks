@@ -9,9 +9,13 @@ defaultConstants =
   AUTH0_TOKEN_NAME: 'userJWTToken'
 
 module.exports = (gulp, $, configs) ->
-  gulp.task 'ng-constant', ->
-    constants = configs.constants || defaultConstants
+  constants = {}
 
+  for key, defaultConstant in defaultConstants
+    envVal         = configs.env.getVal key
+    constants[key] = configs.constants?[key] || envVal || defaultConstant
+
+  gulp.task 'ng-constant', ->
     options =
       name     : 'app.constants'
       constants: constants

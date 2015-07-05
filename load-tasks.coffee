@@ -20,7 +20,7 @@ defaultTasks = [
   'finger-print-replace'
 ]
 
-loadTasks = (configs = null, tasks = null) ->
+loadTasks = (configs = {}, tasks = null) ->
   taskPath                 = configs.taskPath || '.'
   tasks                    = tasks || defaultTasks
   configs.karma.configFile = __dirname + '/' + taskPath + '/karma.conf.coffee'
@@ -39,6 +39,8 @@ loadTasks = (configs = null, tasks = null) ->
   $.browserSync  = require browserSyncPath
   $.karma        = require(karmaPath).server
   configs.env    = require './get-env.coffee'
+
+  configs.env.readFile configs.envFile if configs.envFile
 
   for task in tasks
     module = require(taskPath + '/tasks/' + task)

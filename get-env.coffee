@@ -1,14 +1,8 @@
 'use strict'
 
-path       = require 'path'
-fs         = require 'fs'
-env        = require './node_modules/node-env-file'
-envFile    = path.join __dirname, '../.env'
-existsSync = fs.existsSync envFile
-
-if existsSync
-  envFile
-  env()
+path        = require 'path'
+fs          = require 'fs'
+nodeEnvFile = require './node_modules/node-env-file'
 
 getVal = (name, defaultVal) ->
   hasOwnProperty = process.env.hasOwnProperty name
@@ -19,5 +13,13 @@ getVal = (name, defaultVal) ->
 
   null
 
+readFile = (file) ->
+  envFile    = path.join __dirname, file
+  existsSync = fs.existsSync envFile
+
+  nodeEnvFile envFile if existsSync
+
 module.exports =
-  getVal: getVal
+  getVal  : getVal
+  readFile: readFile
+
