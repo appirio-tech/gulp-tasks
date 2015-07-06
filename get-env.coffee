@@ -14,10 +14,9 @@ getVal = (name, defaultVal) ->
   null
 
 readFile = (file) ->
-  envFile    = path.join __dirname, file
-  existsSync = fs.existsSync envFile
+  existsSync = fs.existsSync file
 
-  nodeEnvFile envFile if existsSync
+  nodeEnvFile file if existsSync
 
 module.exports =
   getVal  : getVal
