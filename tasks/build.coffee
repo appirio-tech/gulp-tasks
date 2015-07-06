@@ -1,16 +1,5 @@
 defaultDistFolder  = 'dist'
 defaultCopyFiles   = ['app/images/**/*']
-defaultConcatFiles =
-  'main.js': [
-    '.tmp/scripts/**/*.module.js'
-    '.tmp/scripts/**/*.controller.js'
-    '.tmp/scripts/**/*.service.js'
-    '.tmp/scripts/**/*.directive.js'
-    '.tmp/scripts/**/*.filter.js'
-  ]
-  'main.portrait.css': ['.tmp/styles/**/*.portrait.css']
-  'main.landscape.css': ['.tmp/styles/**/*.landscape.css']
-  'main.desktop.css': ['.tmp/styles/**/*.desktop.css']
 
 module.exports = (gulp, $, configs) ->
   distFolder = configs.distFolder || defaultDistFolder
@@ -43,7 +32,6 @@ module.exports = (gulp, $, configs) ->
 
   gulp.task 'build', dependencies, ->
     buildCopy()
-    buildConcat()
 
   optimizeDependencies = [
     'cdnify'

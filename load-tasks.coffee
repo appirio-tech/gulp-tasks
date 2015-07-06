@@ -18,6 +18,7 @@ defaultTasks = [
   'cdnify'
   'finger-print'
   'finger-print-replace'
+  'useref'
 ]
 
 loadTasks = (configs = {}, tasks = null) ->
