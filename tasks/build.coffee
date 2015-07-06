@@ -37,6 +37,7 @@ module.exports = (gulp, $, configs) ->
     'cdnify'
     'uglify'
     'minify-css'
+    'remove-code'
   ]
 
   gulp.task 'optimize-build', optimizeDependencies, ->
