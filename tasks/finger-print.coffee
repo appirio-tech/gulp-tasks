@@ -1,18 +1,18 @@
-defaultFingerPrintFiles = 'dist/**/*'
-defaultDistFolder       = 'dist'
-defaultTempFolder       = '.tmp'
+defaultFiles        = 'dist/**/*'
+defaultDistPath     = 'dist'
+defaultManifestPath = '.tmp'
 
 module.exports = (gulp, $, configs) ->
-  fingerPrintFiles = configs.fingerPrintFiles || defaultFingerPrintFiles
-  distFolder       = configs.distFolder || defaultDistFolder
-  tempFolder       = configs.tempFolder || defaultTempFolder
+  files    = configs.fingerPrint?.files || defaultFiles
+  distPath = configs.fingerPrint?.destPath || defaultDistPath
+  tempPath = configs.fingerPrint?.manifestPath || defaultManifestPath
 
   gulp.task 'finger-print', ->
     options  = {}
     rev      = $.rev options
     manifest = $.rev.manifest()
     src      = gulp.src fingerPrintFiles
-    dest     = gulp.dest distFolder
-    tempDest = gulp.dest tempFolder
+    dest     = gulp.dest distPath
+    tempDest = gulp.dest tempPath
 
     src.pipe(rev).pipe(dest).pipe(manifest).pipe tempDest
