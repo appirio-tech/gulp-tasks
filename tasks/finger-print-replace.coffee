@@ -1,18 +1,18 @@
-defaultManifestFile            = '.tmp/rev-manifest.json'
-defaultFingerPrintReplaceFiles = 'dist/**/*'
-defaultDistFolder              = 'dist'
+defaultManifest = '.tmp/rev-manifest.json'
+defaultFiles    = 'dist/**/*'
+defaultDistPath = 'dist'
 
 module.exports = (gulp, $, configs) ->
-  fingerPrintReplaceFiles = configs.fingerPrintReplaceFiles || defaultFingerPrintReplaceFiles
-  manifestFile            = configs.fingerPrintManifestFile || defaultManifestFile
-  distFolder              = configs.distFolder || defaultDistFolder
+  files    = configs.fingerPrintReplace?.files || defaultFiles
+  manifest = configs.fingerPrintReplace?.manifest || defaultManifest
+  distPath = configs.fingerPrintReplace?.destPath || defaultDistPath
 
   gulp.task 'finger-print-replace', ->
-    manifest   = gulp.src manifestFile
+    manifest   = gulp.src manifest
     options    =
       manifest: manifest
     revReplace = $.revReplace options
-    src        = gulp.src fingerPrintReplaceFiles
-    dest       = gulp.dest distFolder
+    src        = gulp.src files
+    dest       = gulp.dest distPath
 
     src.pipe(revReplace).pipe dest
