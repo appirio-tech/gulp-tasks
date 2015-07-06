@@ -44,3 +44,13 @@ module.exports = (gulp, $, configs) ->
   gulp.task 'build', dependencies, ->
     buildCopy()
     buildConcat()
+
+  optimizeDependencies = [
+    'cdnify'
+    'uglify'
+    'minify-css'
+  ]
+
+  gulp.task 'optimize-build', optimizeDependencies, ->
+    # should run build before this
+
