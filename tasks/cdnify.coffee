@@ -10,7 +10,7 @@ module.exports = (gulp, $, configs) ->
 
   gulp.task 'cdnify', ->
     options =
-      defaultCDNBase: '//my.cdn.url/'
+      defaultCDNBase: 'https://ap-work-client-site-dev.s3.amazonaws.com'
       files         : ['**/*.{gif,png,jpg,jpeg,svg,woff2,js,css}']
 
     cdnizer = $.cdnizer options
