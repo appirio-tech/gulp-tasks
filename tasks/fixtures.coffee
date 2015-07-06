@@ -1,19 +1,21 @@
 defaultFixtureFiles = 'bower_components/appirio-tech-api-schemas/swagger/**/*.json'
-defaultTempFolder   = '.tmp'
+defaultDestPath     = '.tmp/scripts'
+defaultDestName     = 'json-fixtures.js'
 
 module.exports = (gulp, $, configs) ->
-  fixtureFiles = configs.fixtureFiles || defaultFixtureFiles
-  tempFolder   = configs.tempFolder || defaultTempFolder
+  fixtureFiles = configs.fixture?.files || defaultFixtureFiles
+  destName     = configs.fixture?.destName || defaultDestName
+  destPath     = configs.fixture?.destPath || defaultTempFolder
 
   gulp.task 'fixtures', ->
     src  = gulp.src fixtureFiles
-    dest = gulp.dest tempFolder
+    dest = gulp.dest destPath
 
     options =
       postProcessors:
         '**/*.json': 'json'
 
-    fixtures = $.fixtures2js 'scripts/json-fixtures.js', options
+    fixtures = $.fixtures2js destName, options
 
     src.pipe(fixtures).pipe(dest)
 
