@@ -11,7 +11,7 @@ module.exports = (gulp, $, configs) ->
     options  = {}
     rev      = $.rev options
     manifest = $.rev.manifest()
-    src      = gulp.src fingerPrintFiles
+    src      = gulp.src files
     dest     = gulp.dest distPath
     tempDest = gulp.dest tempPath
 
