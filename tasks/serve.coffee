@@ -3,7 +3,7 @@ defaultJadeFiles   = 'app/**/*.jade'
 defaultCoffeeFiles = 'app/**/*.coffee'
 
 module.exports = (gulp, $, configs) ->
-  depedencies = ['ng-constant', 'fixtures', 'coffee', 'scss', 'jade']
+  depedencies = ['ng-constant', 'fixtures', 'coffee', 'scss', 'template-cache']
 
   baseDir = configs.baseDir || []
   baseDir.push configs.tempFolder
