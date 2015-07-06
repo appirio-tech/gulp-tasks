@@ -11,7 +11,7 @@ defaultConstants =
 module.exports = (gulp, $, configs) ->
   constants = {}
 
-  for key, defaultConstant in defaultConstants
+  for key, defaultConstant of defaultConstants
     envVal         = configs.env.getVal key
     constants[key] = configs.constants?[key] || envVal || defaultConstant
 
