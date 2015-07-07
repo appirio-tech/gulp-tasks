@@ -1,9 +1,11 @@
 defaultSCSSFiles   = 'app/**/*.scss'
 defaultJadeFiles   = 'app/**/*.jade'
 defaultCoffeeFiles = 'app/**/*.coffee'
+defaultPort        = 9000
 
 module.exports = (gulp, $, configs) ->
   depedencies = ['ng-constant', 'fixtures', 'coffee', 'scss', 'template-cache']
+  port        = configs.serve?.port || defaultPort
 
   baseDir = configs.baseDir || []
   baseDir.push configs.tempFolder
@@ -13,7 +15,7 @@ module.exports = (gulp, $, configs) ->
     options =
       open  : false
       notify: false
-      port  : 9000
+      port  : port
       server:
         baseDir: baseDir
         routes:
