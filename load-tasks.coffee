@@ -20,6 +20,7 @@ defaultTasks = [
   'finger-print-replace'
   'useref'
   'remove-code'
+  'copy-files'
 ]
 
 loadTasks = (configs = {}, tasks = null) ->

@@ -18,6 +18,9 @@ configs.karma =
     'tests/specs/**/*.coffee'
   ]
 
+configs.copyFiles =
+  'dist': 'app/**/*.{gif,png,jpg,jpeg,svg}'
+
 configs.templateCache =
   files : [
     '.tmp/views/footer.html'
