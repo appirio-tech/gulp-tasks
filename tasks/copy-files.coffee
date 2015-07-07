@@ -1,5 +1,5 @@
 defaultFiles =
-  'dist': 'app/**/*.{gif,png,jpg,jpeg,svg}'
+  'dist': '**/*.{gif,png,jpg,jpeg,svg}'
 
 defaultBase = 'app/'
 
