@@ -25,9 +25,9 @@ defaultTasks = [
 ]
 
 loadTasks = (configs = {}, tasks = null) ->
-  taskPath                 = configs.taskPath || '.'
+  taskPath                 = configs.taskPath || __dirname
   tasks                    = tasks || defaultTasks
-  configs.karma.configFile = __dirname + '/' + taskPath + '/karma.conf.coffee'
+  configs.karma.configFile = taskPath + '/karma.conf.coffee'
   configs.karma.basePath   = __dirname
   pluginsPath              = taskPath + '/node_modules/gulp-load-plugins'
   browserSyncPath          = taskPath + '/node_modules/browser-sync'
@@ -35,7 +35,7 @@ loadTasks = (configs = {}, tasks = null) ->
   configPath               = taskPath + '/node_modules/config'
 
   gulpLoadPluginsOptions =
-    config: __dirname + '/' + taskPath + '/package.json'
+    config: taskPath + '/package.json'
 
   gulp           = require 'gulp'
   plugins        = require pluginsPath
