@@ -1,21 +1,4 @@
 module.exports = (gulp, $, configs) ->
-  buildCopy = ->
-    if configs.buildFiles?.copy
-      dest = gulp.dest configs.distFolder
-
-      for path in configs.buildFiles.copy
-        src = gulp.src path
-
-        src.pipe dest
-
-  buildConcat = ->
-    if configs.buildFiles?.concat
-      for to, from of configs.buildFiles.concat
-        concated = $.concat to
-        src      = gulp.src from
-        dest     = gulp.dest configs.distFolder
-
-        src.pipe(concated).pipe dest
 
   dependencies = [
     'ng-constant'
@@ -24,6 +7,16 @@ module.exports = (gulp, $, configs) ->
     'coffee'
   ]
 
-  gulp.task 'build', dependencies, ->
-    buildCopy()
-    buildConcat()
+  gulp.task 'preprocessors', dependencies, ->
+    # nothing
+
+  optimizeDependencies = [
+    'cdnify'
+    'uglify'
+    'minify-css'
+    'remove-code'
+  ]
+
+  gulp.task 'optimize-build', optimizeDependencies, ->
+    # should run build before this
+

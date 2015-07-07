@@ -1,5 +1,11 @@
+defaultSCSSFiles   = 'app/**/*.scss'
+defaultJadeFiles   = 'app/**/*.jade'
+defaultCoffeeFiles = 'app/**/*.coffee'
+defaultPort        = 9000
+
 module.exports = (gulp, $, configs) ->
-  depedencies = ['ng-constant', 'fixtures', 'coffee', 'scss', 'jade']
+  depedencies = ['ng-constant', 'fixtures', 'coffee', 'scss', 'template-cache']
+  port        = configs.serve?.port || defaultPort
 
   baseDir = configs.baseDir || []
   baseDir.push configs.tempFolder
@@ -9,7 +15,7 @@ module.exports = (gulp, $, configs) ->
     options =
       open  : false
       notify: false
-      port  : 9000
+      port  : port
       server:
         baseDir: baseDir
         routes:
@@ -24,6 +30,10 @@ module.exports = (gulp, $, configs) ->
 
     gulp.watch(watchFiles).on 'change', $.browserSync.reload
 
-    gulp.watch configs.scssFiles, ['scss']
-    gulp.watch configs.jadeFiles, ['jade']
-    gulp.watch configs.coffeeFiles, ['coffee']
+    scssFiles   = configs.scssFiles || defaultSCSSFiles
+    jadeFiles   = configs.jadeFiles || defaultJadeFiles
+    coffeeFiles = configs.coffeeFiles || defaultCoffeeFiles
+
+    gulp.watch scssFiles, ['scss']
+    gulp.watch jadeFiles, ['jade']
+    gulp.watch coffeeFiles, ['coffee']

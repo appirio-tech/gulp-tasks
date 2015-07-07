@@ -1,4 +1,12 @@
-karmaConfig =
+'use strict'
+
+configs =
+  scssIncludePaths: require('node-neat').includePaths
+  tempFolder      : '.tmp'
+  appFolder       : 'app'
+  distFolder      : 'dist'
+
+configs.karma =
   configFile  : __dirname + '/karma.conf.coffee'
   basePath    : __dirname
   coverage    : 'app/**/*.coffee'
@@ -10,11 +18,7 @@ karmaConfig =
     'tests/specs/**/*.coffee'
   ]
 
-fixtureFiles = [
-  'app/**/*.json'
-]
-
-templateCache =
+configs.templateCache =
   files : [
     '.tmp/views/footer.html'
     '.tmp/views/main.html'
@@ -22,53 +26,9 @@ templateCache =
   root  : 'views/'
   module: 'appirio-tech-messaging'
 
-buildFiles =
-  copy: ['.tmp/index.html']
-  concat:
-    'main.js': ['.tmp/scripts/main.js', 'app/scripts/test.js']
-    'main.css': ['.tmp/styles/main.css', 'app/styles/test.css']
-
-configs =
-  coffeeFiles     : 'app/**/*.coffee'
-  jadeFiles       : 'app/**/*.jade'
-  scssFiles       : 'app/**/*.scss'
-  scssIncludePaths: require('node-neat').includePaths
-  tempFolder      : '.tmp'
-  appFolder       : 'app'
-  distFolder      : 'dist'
-  karma           : karmaConfig
-  fixtureFiles    : fixtureFiles
-  buildFiles      : buildFiles
-  templateCache   : templateCache
-  coverageReporter:
-    type: 'lcov'
-    dir: 'coverage'
 
 ### END CONFIG ###
 
-gulp          = require 'gulp'
-$             = require('gulp-load-plugins')()
-$.browserSync = require 'browser-sync'
-$.karma       = require('karma').server
+loadTasksModule = require './load-tasks.coffee'
 
-tasks = [
-  'coffee'
-  'jade'
-  'scss'
-  'clean'
-  'serve'
-  'build'
-  'test'
-  'ng-constant'
-  'coveralls'
-  'fixtures'
-  'template-cache'
-]
-
-for task in tasks
-  module = require('./tasks/' + task)
-  module gulp, $, configs
-
-gulp.task 'default', ['clean'], ->
-  gulp.start 'build'
-
+loadTasksModule.loadTasks configs

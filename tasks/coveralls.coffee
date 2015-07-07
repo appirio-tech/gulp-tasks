@@ -1,6 +1,12 @@
+defaultCoverageReporter =
+  type: 'lcov'
+  dir: 'coverage'
+
 module.exports = (gulp, $, configs) ->
+  coverageReporter = configs.coverageReporter || defaultCoverageReporter
+
   gulp.task 'coveralls', ->
-    lcov = configs.coverageReporter.dir + '/**/lcov.info'
+    lcov = coverageReporter.dir + '/**/lcov.info'
     src  = gulp.src lcov
 
     src.pipe $.coveralls()

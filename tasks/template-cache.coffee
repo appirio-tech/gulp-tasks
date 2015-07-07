@@ -1,8 +1,12 @@
+defaultDestPath = '.tmp/scripts'
+
 module.exports = (gulp, $, configs) ->
+  destPath = configs.templateCache.destPath || defaultDestPath
+
   gulp.task 'template-cache', ['jade'], ->
     if configs.templateCache
       src     = gulp.src configs.templateCache.files
-      dest    = gulp.dest(configs.tempFolder + '/scripts')
+      dest    = gulp.dest destPath
       options =
         root  : configs.templateCache.root
         module: configs.templateCache.module
