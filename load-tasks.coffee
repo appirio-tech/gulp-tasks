@@ -43,8 +43,9 @@ loadTasks = (configs = {}, tasks = null) ->
   $.browserSync  = require browserSyncPath
   $.karma        = require(karmaPath).server
   configs.env    = require './get-env.coffee'
+  envFile        = configs.envFile || '.env'
 
-  configs.env.readFile configs.envFile if configs.envFile
+  configs.env.readFile envFile
 
   for task in tasks
     module = require(taskPath + '/tasks/' + task)

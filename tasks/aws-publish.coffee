@@ -8,9 +8,10 @@ module.exports = (gulp, $, configs) ->
 
   gulp.task 'aws-publish', ->
     options =
-      bucket: bucket
-      key   : key
-      secret: secret
+      accessKeyId    : key
+      secretAccessKey: secret
+      params:
+        Bucket: bucket
 
     headers =
       'Cache-Control': 'max-age=315360000, no-transform, public'
