@@ -21,6 +21,7 @@ defaultTasks = [
   'useref'
   'remove-code'
   'copy-files'
+  'aws-publish'
 ]
 
 loadTasks = (configs = {}, tasks = null) ->
