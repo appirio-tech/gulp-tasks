@@ -1,6 +1,6 @@
 {
   "name": "appirio-gulp-tasks",
-  "version": "1.0.103",
+  "version": "1.0.104",
   "description": "",
   "engines": {
     "node": ">=0.10.0"

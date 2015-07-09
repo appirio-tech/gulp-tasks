@@ -1,20 +1,20 @@
-defaultCdnifyFiles = [
+defaultFiles = [
   'dist/**/*.css'
   'dist/**/*.html'
 ]
-defaultDistFolder  = 'dist'
+defaultDistPath  = 'dist'
 
 module.exports = (gulp, $, configs) ->
-  cdnifyFiles       = configs.cdnifyFiles || defaultCdnifyFiles
-  defaultDistFolder = configs.distFolder || defaultDistFolder
+  cdnifyFiles = configs.cdnify?.files || defaultFiles
+  distPath    = configs.cdnify?.distPath || defaultDistPath
 
   gulp.task 'cdnify', ->
     options =
-      defaultCDNBase: 'https://ap-work-client-site-dev.s3.amazonaws.com'
+      defaultCDNBase: configs.cdnify?.url
       files         : ['**/*.{gif,png,jpg,jpeg,svg,woff2,js,css}']
 
     cdnizer = $.cdnizer options
     src     = gulp.src cdnifyFiles
-    dest    = gulp.dest defaultDistFolder
+    dest    = gulp.dest distPath
 
     src.pipe(cdnizer).pipe dest
