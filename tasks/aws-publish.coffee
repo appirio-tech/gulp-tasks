@@ -23,8 +23,7 @@ module.exports = (gulp, $, configs) ->
     publishCache = publisher.cache()
     gzip         = $.awspublish.gzip gzipOptions
     publish      = publisher.publish headers
-    sync         = publisher.sync()
     reporter     = $.awspublish.reporter()
     src          = gulp.src files
 
-    src.pipe(publish).pipe(gzip).pipe(publishCache).pipe(sync).pipe reporter
+    src.pipe(publish).pipe(gzip).pipe(publishCache).pipe reporter
