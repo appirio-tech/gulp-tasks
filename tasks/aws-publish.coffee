@@ -13,13 +13,20 @@ module.exports = (gulp, $, configs) ->
       params:
         Bucket: bucket
 
+    console.log options
+
+    gzipOptions =
+      ext: '.gz'
+
     headers =
       'Cache-Control': 'max-age=315360000, no-transform, public'
 
-    publisher = $.awspublish.create options
-    publish   = publisher.publish headers
-    sync      = publisher.sync()
-    reporter  = $.awspublish.reporter()
-    src       = gulp.src files
+    publisher    = $.awspublish.create options
+    publishCache = publisher.cache()
+    gzip         = $.awspublish.gzip gzipOptions
+    publish      = publisher.publish headers
+    sync         = publisher.sync()
+    reporter     = $.awspublish.reporter()
+    src          = gulp.src files
 
-    src.pipe(publish).pipe(sync).pipe reporter
+    src.pipe(publish).pipe(gzip).pipe(publishCache).pipe(sync).pipe reporter
