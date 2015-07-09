@@ -4,7 +4,7 @@ module.exports = (gulp, $, configs) ->
   bucket = configs.env.getVal 'AWS_BUCKET', ''
   key    = configs.env.getVal 'AWS_KEY', ''
   secret = configs.env.getVal 'AWS_SECRET', ''
-  files  = defaultAwsPublishFiles || configs.awsPublishFiles
+  files  = configs.awsPublishFiles || defaultAwsPublishFiles
 
   gulp.task 'aws-publish', ->
     options =
