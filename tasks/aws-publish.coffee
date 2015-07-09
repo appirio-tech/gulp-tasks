@@ -13,8 +13,6 @@ module.exports = (gulp, $, configs) ->
       params:
         Bucket: bucket
 
-    console.log options
-
     gzipOptions =
       ext: '.gz'
 
