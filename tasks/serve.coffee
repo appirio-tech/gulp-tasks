@@ -35,5 +35,5 @@ module.exports = (gulp, $, configs) ->
     coffeeFiles = configs.coffeeFiles || defaultCoffeeFiles
 
     gulp.watch scssFiles, ['scss']
-    gulp.watch jadeFiles, ['jade']
+    gulp.watch jadeFiles, ['template-cache']
     gulp.watch coffeeFiles, ['coffee']
