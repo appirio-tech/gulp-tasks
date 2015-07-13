@@ -7,5 +7,5 @@
 alias gserve='nvm use; gulp clean; gulp serve'
 alias gtest='nvm use; gulp test'
 alias gtestserve='nvm use; gulp test-serve'
-alias gbuild='nvm use; gulp clean; gulp build'
+alias gbuild='nvm use; gulp clean; gulp preprocessors; gulp useref; gulp copy-files;'
 ```
