@@ -10,6 +10,7 @@ module.exports = (gulp, $, configs) ->
   baseDir = configs.baseDir || []
   baseDir.push configs.tempFolder
   baseDir.push configs.appFolder
+  baseDir.push configs.exampleFolder
 
   gulp.task 'serve', depedencies, ->
     options =
@@ -26,6 +27,7 @@ module.exports = (gulp, $, configs) ->
     watchFiles = [
       configs.tempFolder + '/**/*.{js,css,html}'
       configs.appFolder + '/**/*.{js,css,html}'
+      configs.exampleFolder + '/**/*.{js,css,html}'
     ]
 
     gulp.watch(watchFiles).on 'change', $.browserSync.reload
