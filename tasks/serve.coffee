@@ -10,6 +10,7 @@ module.exports = (gulp, $, configs) ->
   baseDir = configs.baseDir || []
   baseDir.push configs.tempFolder
   baseDir.push configs.appFolder
+  baseDir.concat(configs.serveDirs || [])
 
   gulp.task 'serve', depedencies, ->
     options =
