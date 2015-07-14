@@ -4,7 +4,7 @@ defaultSCSSFiles = [
   'src/**/*.scss'
 ]
 defaultTempFolder       = '.tmp'
-defaultSCSSIncludePaths = require('node-neat').includePaths
+defaultSCSSIncludePaths = require('appirio-work-styles').includePaths
 
 module.exports = (gulp, $, configs) ->
   scssFiles        = configs.scss?.scssFiles || defaultSCSSFiles
