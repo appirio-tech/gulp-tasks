@@ -5,6 +5,9 @@
   "engines": {
     "node": ">=0.10.0"
   },
+  "devDependencies": {
+    "appirio-work-styles": "git@github.com:appirio-tech/work-styles#^0.0.104"
+  },
   "dependencies": {
     "autoprefixer-core": "^4.0.2",
     "browser-sync": "^1.8.2",
