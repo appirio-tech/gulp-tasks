@@ -1,5 +1,5 @@
 defaultPort         = 9000
-defaultServeFolders = ['src', 'app', 'example', '.tmp', 'bower_components']
+defaultServeFolders = ['src', 'app', 'example', '.tmp']
 defaultSCSSFiles    = []
 defaultJadeFiles    = []
 defaultCoffeeFiles  = []
