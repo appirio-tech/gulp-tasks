@@ -1,5 +1,5 @@
 defaultPort         = 9000
-defaultServeFolders = ['src', 'app', 'example', '.tmp']
+defaultServeFolders = ['src', 'app', 'example', '.tmp', 'bower_components']
 defaultSCSSFiles    = []
 defaultJadeFiles    = []
 defaultCoffeeFiles  = []
@@ -27,9 +27,10 @@ module.exports = (gulp, $, configs) ->
 
   gulp.task 'serve', depedencies, ->
     options =
-      open  : false
-      notify: false
-      port  : port
+      open       : false
+      notify     : false
+      port       : port
+      reloadDelay: 1000
       server:
         baseDir: serveFolders
         routes:
