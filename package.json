@@ -5,12 +5,16 @@
   "engines": {
     "node": ">=0.10.0"
   },
+  "devDependencies": {
+    "appirio-work-styles": "git@github.com:appirio-tech/work-styles#^0.0.104"
+  },
   "dependencies": {
     "autoprefixer-core": "^4.0.2",
     "browser-sync": "^1.8.2",
     "chai": "^2.3.0",
     "coffee-script": "^1.9.2",
     "del": "^1.1.1",
+    "file-exists": "^0.1.1",
     "gulp": "^3.8.11",
     "gulp-angular-templatecache": "^1.6.0",
     "gulp-awspublish": "^2.0.2",
@@ -48,7 +52,8 @@
     "node-bourbon": "^4.2.1-beta1",
     "node-env-file": "^0.1.7",
     "node-neat": "^1.7.1-beta1",
-    "opn": "^1.0.0"
+    "opn": "^1.0.0",
+    "wiredep": "^3.0.0-beta"
   },
   "ignore": [
     "**/*",

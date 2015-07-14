@@ -1,9 +1,13 @@
-defaultJadeFiles  = 'app/**/*.jade'
+defaultJadeFiles  = [
+  'app/**/*.jade'
+  'example/**/*.jade'
+  'src/**/*.jade'
+]
 defaultTempFolder = '.tmp'
 
 module.exports = (gulp, $, configs) ->
-  jadeFiles  = configs.jadeFiles || defaultJadeFiles
-  tempFolder = configs.tempFolder || defaultTempFolder
+  jadeFiles  = configs.jade?.files || defaultJadeFiles
+  tempFolder = configs.jade?.tempFolder || defaultTempFolder
 
   gulp.task 'jade', ->
     options =

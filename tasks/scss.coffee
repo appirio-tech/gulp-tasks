@@ -1,11 +1,15 @@
-defaultSCSSFiles        = 'app/**/*.scss'
+defaultSCSSFiles = [
+  'app/**/*.scss'
+  'example/**/*.scss'
+  'src/**/*.scss'
+]
 defaultTempFolder       = '.tmp'
-defaultSCSSIncludePaths = require('node-neat').includePaths
+defaultSCSSIncludePaths = require('appirio-work-styles').includePaths
 
 module.exports = (gulp, $, configs) ->
-  scssFiles        = configs.scssFiles || defaultSCSSFiles
-  tempFolder       = configs.tempFolder || defaultTempFolder
-  scssIncludePaths = configs.scssIncludePaths || defaultSCSSIncludePaths
+  scssFiles        = configs.scss?.scssFiles || defaultSCSSFiles
+  tempFolder       = configs.scss?.tempFolder || defaultTempFolder
+  scssIncludePaths = configs.scss?.includePaths || defaultSCSSIncludePaths
 
   gulp.task 'scss', ->
     onError = ->

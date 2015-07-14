@@ -1,18 +1,55 @@
+wiredep                 = require 'wiredep'
+defualtConfigFile       = '../karma.conf.coffee'
+defaultCoverageReporter =
+  type: 'lcov'
+  dir: 'coverage'
+
 module.exports = (gulp, $, configs) ->
+  defaultCoffeeFiles   = [configs.__dirname + '/tests/specs/**/*.coffee'] # Dont include coverage files
+  coffeeFiles          = configs.karma?.coffeeFiles || defaultCoffeeFiles
+  defaultCoverageFiles = configs.__dirname + '/app/**/*.coffee'
+  configFile           = configs.karma?.configFile || defualtConfigFile
+  coverageFiles        = configs.karma?.coverage || defaultCoverageFiles
+  coverageReporter     = configs.coverageReporter || defaultCoverageReporter
+  basePath             = configs.karma?.basePath || configs.__dirname || '.'
+
+  if configs.__dirname
+    bowerJSONPath = configs.__dirname + '/./bower.json'
+    bowerJSON     = require bowerJSONPath
+
+  wiredepOptions   =
+    devDependencies: true
+    bowerJson      : bowerJSON
+
+  bowerFiles   = wiredep(wiredepOptions)['js']
+
+  defaultFiles = [
+    configs.__dirname + '/tests/specs/helper.coffee'
+    configs.__dirname + '/.tmp/scripts/json-fixtures.js'
+    configs.__dirname + '/app/scripts/**/*.module.coffee'
+    configs.__dirname + '/.tmp/scripts/templates.js'
+    configs.__dirname + '/.tmp/scripts/constants.js'
+    configs.__dirname + '/app/**/*.coffee'
+    configs.__dirname + '/tests/specs/**/*.coffee'
+  ]
+
+  defaultFiles = bowerFiles.concat defaultFiles if bowerFiles
+  files        = configs.karma?.files || defaultFiles
+
   runTest = (singleRun = true, coverage = true) ->
     preprocessors = {}
-    preprocessors[configs.karma.coverage]  = if coverage then 'coverage' else 'coffee'
+    preprocessors[coverageFiles] = if coverage then 'coverage' else 'coffee'
 
-    for coffeeFile in configs.karma.coffeeFiles
+    for coffeeFile in coffeeFiles
       preprocessors[coffeeFile] = 'coffee'
 
     options =
-      basePath        : configs.karma.basePath
-      configFile      : configs.karma.configFile
+      basePath        : basePath
+      configFile      : configFile
       singleRun       : singleRun
       preprocessors   : preprocessors
-      files           : configs.karma.files
-      coverageReporter: configs.coverageReporter
+      files           : files
+      coverageReporter: coverageReporter
 
     $.karma.start options
 
