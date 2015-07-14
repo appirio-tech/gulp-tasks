@@ -15,7 +15,6 @@ configs.karma =
     'bower_components/jquery/dist/jquery.js'
     '.tmp/scripts/json-fixtures.js'
     'app/**/*.coffee'
-    'example/**/*.jade'
     'tests/specs/**/*.coffee'
   ]
 
