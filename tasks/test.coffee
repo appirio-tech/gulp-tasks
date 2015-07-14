@@ -7,12 +7,14 @@ defaultCoverageReporter =
 module.exports = (gulp, $, configs) ->
   defaultCoffeeFiles   = [configs.__dirname + '/tests/specs/**/*.coffee'] # Dont include coverage files
   coffeeFiles          = configs.karma?.coffeeFiles || defaultCoffeeFiles
-  bowerJSONPath        = configs.__dirname + '/./bower.json'
   defaultCoverageFiles = configs.__dirname + '/app/**/*.coffee'
   configFile           = configs.karma?.configFile || defualtConfigFile
   coverageFiles        = configs.karma?.coverage || defaultCoverageFiles
-  bowerJSON            = require bowerJSONPath
   coverageReporter     = configs.coverageReporter || defaultCoverageReporter
+
+  if configs.__dirname
+    bowerJSONPath        = configs.__dirname + '/./bower.json'
+    bowerJSON            = require bowerJSONPath
 
   wiredepOptions   =
     devDependencies: true
