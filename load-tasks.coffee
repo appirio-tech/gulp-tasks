@@ -1,6 +1,5 @@
 'use strict'
 
-defaultTaskPath = '.'
 defaultTasks = [
   'coffee'
   'jade'
@@ -24,8 +23,12 @@ defaultTasks = [
   'aws-publish'
 ]
 
+fileExists = require 'file-exists'
+
 loadTasks = (configs = {}, tasks = null) ->
-  taskPath                 = configs.taskPath || __dirname
+  defaultTaskPath          = configs.__dirname + '/node_modules/appirio-gulp-tasks'
+  defaultTaskPath          = null unless fileExists defaultTaskPath
+  taskPath                 = configs.taskPath || defaultTaskPath || __dirname
   tasks                    = tasks || defaultTasks
   configs.karma            = configs.karma || {}
   configs.karma.configFile = taskPath + '/karma.conf.coffee'
