@@ -1,6 +1,7 @@
 'use strict'
 
-configs = {}
+configs =
+  __dirname: __dirname
 
 configs.templateCache =
   files : [

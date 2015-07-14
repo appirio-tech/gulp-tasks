@@ -48,7 +48,8 @@
     "node-bourbon": "^4.2.1-beta1",
     "node-env-file": "^0.1.7",
     "node-neat": "^1.7.1-beta1",
-    "opn": "^1.0.0"
+    "opn": "^1.0.0",
+    "wiredep": "^3.0.0-beta"
   },
   "ignore": [
     "**/*",
