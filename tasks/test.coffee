@@ -11,6 +11,7 @@ module.exports = (gulp, $, configs) ->
   configFile           = configs.karma?.configFile || defualtConfigFile
   coverageFiles        = configs.karma?.coverage || defaultCoverageFiles
   coverageReporter     = configs.coverageReporter || defaultCoverageReporter
+  basePath             = configs.karma?.basePath || configs.__dirname || '.'
 
   if configs.__dirname
     bowerJSONPath = configs.__dirname + '/./bower.json'
@@ -18,7 +19,8 @@ module.exports = (gulp, $, configs) ->
 
   wiredepOptions   =
     devDependencies: true
-    bowerJson: bowerJSON
+    bowerJson      : bowerJSON
+
   bowerFiles   = wiredep(wiredepOptions)['js']
 
   defaultFiles = [
@@ -31,7 +33,7 @@ module.exports = (gulp, $, configs) ->
     configs.__dirname + '/tests/specs/**/*.coffee'
   ]
 
-  defaultFiles = bowerFiles.concat defaultFiles
+  defaultFiles = bowerFiles.concat defaultFiles if bowerFiles
   files        = configs.karma?.files || defaultFiles
 
   runTest = (singleRun = true, coverage = true) ->
@@ -42,7 +44,7 @@ module.exports = (gulp, $, configs) ->
       preprocessors[coffeeFile] = 'coffee'
 
     options =
-      basePath        : configs.__dirname
+      basePath        : basePath
       configFile      : configFile
       singleRun       : singleRun
       preprocessors   : preprocessors
