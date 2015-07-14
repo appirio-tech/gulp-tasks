@@ -2,8 +2,8 @@ defaultMinifyCSSFiles = 'dist/**/*.css'
 defaultDistFolder     = 'dist'
 
 module.exports = (gulp, $, configs) ->
-  minifyCssFiles    = configs.minifyCssFiles || defaultMinifyCSSFiles
-  defaultDistFolder = configs.distFolder || defaultDistFolder
+  minifyCssFiles    = configs.minifyCss?.files || defaultMinifyCSSFiles
+  defaultDistFolder = configs.minifyCss?.distFolder || defaultDistFolder
 
   gulp.task 'minify-css', ->
     options   = {}

@@ -2,8 +2,8 @@ defaultUglifyFiles = 'dist/**/*.js'
 defaultDistFolder  = 'dist'
 
 module.exports = (gulp, $, configs) ->
-  uglifyFiles       = configs.uglifyFiles || defaultUglifyFiles
-  defaultDistFolder = configs.distFolder || defaultDistFolder
+  uglifyFiles       = configs.uglify?.files || defaultUglifyFiles
+  defaultDistFolder = configs.uglify?.distFolder || defaultDistFolder
 
   gulp.task 'uglify', ->
     options =

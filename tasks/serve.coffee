@@ -1,18 +1,26 @@
-defaultSCSSFiles     = 'app/**/*.scss'
-defaultJadeFiles     = 'app/**/*.jade'
-defaultCoffeeFiles   = 'app/**/*.coffee'
-defaultExampleFolder = 'example'
 defaultPort          = 9000
+defaultServeFolders  = ['src', 'app', 'example', '.tmp']
+
+for folder in defaultServeFolders
+  scss   = folder + '/**/*.scss'
+  jade   = folder + '/**/*.jade'
+  coffee = folder + '/**/*.coffee'
+  reload = folder + '/**/*.{js,css,html}'
+
+  defaultSCSSFiles.push scss
+  defaultJadeFiles.push jade
+  defaultCoffeeFiles.push coffee
+  defaultReloadFiles.push reload
 
 module.exports = (gulp, $, configs) ->
-  depedencies = ['ng-constant', 'fixtures', 'coffee', 'scss', 'template-cache']
+  depedencies   = ['ng-constant', 'fixtures', 'coffee', 'scss', 'template-cache']
   exampleFolder = configs.exampleFolder || defaultExampleFolder
-  port        = configs.serve?.port || defaultPort
-
-  baseDir = configs.baseDir || []
-  baseDir.push configs.tempFolder
-  baseDir.push configs.appFolder
-  baseDir.push exampleFolder
+  port          = configs.serve?.port || defaultPort
+  reloadFiles   = configs.serve?.reloadFiles || defaultReloadFiles
+  scssFiles     = configs.serve?.scssFiles || defaultSCSSFiles
+  jadeFiles     = configs.serve?.jadeFiles || defaultJadeFiles
+  coffeeFiles   = configs.serve?.coffeeFiles || defaultCoffeeFiles
+  serveFolders  = configs.serve?.serveFolders || defaultServeFolders
 
   gulp.task 'serve', depedencies, ->
     options =
@@ -20,23 +28,13 @@ module.exports = (gulp, $, configs) ->
       notify: false
       port  : port
       server:
-        baseDir: baseDir
+        baseDir: serveFolders
         routes:
           '/bower_components': 'bower_components'
 
     $.browserSync options
 
-    watchFiles = [
-      configs.tempFolder + '/**/*.{js,css,html}'
-      configs.appFolder + '/**/*.{js,css,html}'
-      exampleFolder + '/**/*.{js,css,html}'
-    ]
-
-    gulp.watch(watchFiles).on 'change', $.browserSync.reload
-
-    scssFiles   = configs.scssFiles || defaultSCSSFiles
-    jadeFiles   = configs.jadeFiles || defaultJadeFiles
-    coffeeFiles = configs.coffeeFiles || defaultCoffeeFiles
+    gulp.watch(reloadFiles).on 'change', $.browserSync.reload
 
     gulp.watch scssFiles, ['scss']
     gulp.watch jadeFiles, ['template-cache']
