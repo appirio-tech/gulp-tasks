@@ -13,8 +13,8 @@ module.exports = (gulp, $, configs) ->
   coverageReporter     = configs.coverageReporter || defaultCoverageReporter
 
   if configs.__dirname
-    bowerJSONPath        = configs.__dirname + '/./bower.json'
-    bowerJSON            = require bowerJSONPath
+    bowerJSONPath = configs.__dirname + '/./bower.json'
+    bowerJSON     = require bowerJSONPath
 
   wiredepOptions   =
     devDependencies: true
