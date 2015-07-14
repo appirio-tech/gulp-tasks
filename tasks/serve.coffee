@@ -13,9 +13,10 @@ module.exports = (gulp, $, configs) ->
 
   gulp.task 'serve', depedencies, ->
     options =
-      open  : false
-      notify: false
-      port  : port
+      open       : false
+      notify     : false
+      port       : port
+      reloadDelay: 1000
       server:
         baseDir: baseDir
         routes:
