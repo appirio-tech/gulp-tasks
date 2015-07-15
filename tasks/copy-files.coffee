@@ -1,7 +1,7 @@
 defaultFiles =
   'dist': '**/*.{gif,png,jpg,jpeg,svg}'
 
-defaultBase = 'app/'
+defaultBase = '{app,src}/'
 
 module.exports = (gulp, $, configs) ->
   files = configs.copyFiles?.files || defaultFiles
