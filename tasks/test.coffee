@@ -7,12 +7,14 @@ defaultCoverageReporter =
 module.exports = (gulp, $, configs) ->
   defaultCoffeeFiles   = [configs.__dirname + '/tests/specs/**/*.coffee'] # Dont include coverage files
   coffeeFiles          = configs.karma?.coffeeFiles || defaultCoffeeFiles
+  coffeeFiles          = [coffeeFiles] if typeof(coffeeFiles) == 'string'
   defaultCoverageFiles = [
     configs.__dirname + '/app/**/*.coffee'
     configs.__dirname + '/src/**/*.coffee'
   ]
   configFile           = configs.karma?.configFile || defualtConfigFile
   coverageFiles        = configs.karma?.coverage || defaultCoverageFiles
+  coverageFiles        = [coverageFiles] if typeof(coverageFiles) == 'string'
   coverageReporter     = configs.coverageReporter || defaultCoverageReporter
   basePath             = configs.karma?.basePath || configs.__dirname || '.'
 
@@ -47,7 +49,8 @@ module.exports = (gulp, $, configs) ->
 
   runTest = (singleRun = true, coverage = true) ->
     preprocessors = {}
-    preprocessors[coverageFiles] = if coverage then 'coverage' else 'coffee'
+    for coverageFile in coverageFiles
+      preprocessors[coverageFile] = if coverage then 'coverage' else 'coffee'
 
     for coffeeFile in coffeeFiles
       preprocessors[coffeeFile] = 'coffee'
