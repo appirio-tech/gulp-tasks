@@ -13,6 +13,7 @@
     "browser-sync": "^1.8.2",
     "chai": "^2.3.0",
     "coffee-script": "^1.9.2",
+    "connect-modrewrite": "^0.8.1",
     "del": "^1.1.1",
     "express": "^4.13.1",
     "file-exists": "^0.1.1",
