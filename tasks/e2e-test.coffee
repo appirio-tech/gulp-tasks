@@ -29,7 +29,6 @@ module.exports = (gulp, $, configs) ->
     options =
       configFile: configFile
       debug     : false
-
     protractored = protractor options
     src          = gulp.src tests
 

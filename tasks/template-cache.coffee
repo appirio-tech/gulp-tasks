@@ -1,16 +1,20 @@
 defaultDestPath = '.tmp/scripts'
+defaultFileName = 'templates.js'
 
 module.exports = (gulp, $, configs) ->
-  destPath = configs.templateCache.destPath || defaultDestPath
+  configs.templateCache = [configs.templateCache] unless configs.templateCache?.length
 
   gulp.task 'template-cache', ['jade'], ->
-    if configs.templateCache
-      src     = gulp.src configs.templateCache.files
-      dest    = gulp.dest destPath
-      options =
-        root  : configs.templateCache.root
-        module: configs.templateCache.module
+    for config in configs.templateCache
+      if config.files
+        src      = gulp.src config.files
+        destPath = config.destPath || defaultDestPath
+        dest     = gulp.dest destPath
+        fileName = config.fileName || defaultFileName
+        options  =
+          root  : config.root
+          module: config.module
 
-      templateCache = $.angularTemplatecache options
+        templateCache = $.angularTemplatecache fileName, options
 
-      src.pipe(templateCache).pipe dest
+        src.pipe(templateCache).pipe dest
