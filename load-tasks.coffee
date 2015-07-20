@@ -32,6 +32,7 @@ loadTasks = (configs = {}, tasks = null) ->
   taskPath                   = configs.taskPath || defaultTaskPath || __dirname
   tasks                      = tasks || defaultTasks
   configs.karma              = configs.karma || {}
+  configs.e2eTest            = configs.e2eTest || {}
   configs.karma.configFile   = taskPath + '/karma.conf.coffee'
   configs.e2eTest.configFile = taskPath + '/protractor.config.js'
   pluginsPath                = taskPath + '/node_modules/gulp-load-plugins'
