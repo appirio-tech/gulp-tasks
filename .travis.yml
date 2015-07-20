@@ -12,6 +12,8 @@ script:
 - gulp preprocessors
 - gulp useref
 - gulp copy-files
+- gulp remove-code
+- gulp e2e-test
 - gulp optimize-build
 - gulp finger-print
 - gulp finger-print-replace

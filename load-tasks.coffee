@@ -21,6 +21,7 @@ defaultTasks = [
   'remove-code'
   'copy-files'
   'aws-publish'
+  'e2e-test'
 ]
 
 fileExists = require 'file-exists'
@@ -54,8 +55,8 @@ loadTasks = (configs = {}, tasks = null) ->
     module = require(taskPath + '/tasks/' + task)
     module gulp, $, configs
 
-  gulp.task 'default', ['clean'], ->
-    gulp.start 'build'
+  # gulp.task 'default', ['clean'], ->
+  #   gulp.start 'build'
 
 module.exports =
   loadTasks: loadTasks

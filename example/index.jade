@@ -1,5 +1,5 @@
 doctype html
-html(ng-app='appirio-tech-timeline')
+html(ng-app='appirio-tech-messaging')
   head
     title Gulp Tasks Testing
 
@@ -35,9 +35,7 @@ html(ng-app='appirio-tech-timeline')
     // endbuild
     = "\n"
 
-    // removeIf(production)
-    title I really hate batman!
-    // endRemoveIf(production)
+    title Na na na na na na na na na na na na na na na na... BATMAN!
 
   body
     include ../app/views/main
@@ -47,12 +45,18 @@ html(ng-app='appirio-tech-timeline')
     = "\n"
     // build:js lib.js
     = "\n"
+    script(src="bower_components/angular/angular.js", type="text/javascript")
+    = "\n"
     script(src="bower_components/jquery/dist/jquery.js", type="text/javascript")
+    = "\n"
+    script(src="bower_components/angular-ui-router/release/angular-ui-router.js", type="text/javascript")
     = "\n"
     // endbuild
     = "\n"
 
+    // removeIf(production)
     script(src="scripts/json-fixtures.js", type="text/javascript")
+    // endRemoveIf(production)
 
     = "\n"
     // build:js app.js
