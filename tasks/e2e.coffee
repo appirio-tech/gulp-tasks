@@ -18,14 +18,14 @@ module.exports = (gulp, $, configs) ->
 
   gulp.task 'webdriver_standalone', webdriverStandalone
 
-  gulp.task 'e2e-test-serve', ->
+  gulp.task 'e2e-serve', ->
     options =
       root: serveFolders
       port: port
 
     $.connect.server options
 
-  gulp.task 'e2e-test-run', ['webdriver_update', 'e2e-test-serve'], ->
+  gulp.task 'e2e-test', ['webdriver_update', 'e2e-serve'], ->
     options =
       configFile: configFile
       debug     : false
@@ -37,5 +37,5 @@ module.exports = (gulp, $, configs) ->
 
     src.pipe(protractored).on 'error', onError
 
-  gulp.task 'e2e-test', ['e2e-test-run'], ->
+  gulp.task 'e2e', ['e2e-test'], ->
     process.exit()

@@ -21,7 +21,7 @@ defaultTasks = [
   'remove-code'
   'copy-files'
   'aws-publish'
-  'e2e-test'
+  'e2e'
 ]
 
 fileExists = require 'file-exists'
