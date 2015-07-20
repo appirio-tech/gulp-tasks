@@ -1,3 +1,5 @@
+modRewrite = require 'connect-modrewrite'
+
 defaultPort         = 9000
 defaultServeFolders = ['src', 'app', 'example', '.tmp']
 defaultSCSSFiles    = []
@@ -33,6 +35,11 @@ module.exports = (gulp, $, configs) ->
       reloadDelay: 1000
       server:
         baseDir: serveFolders
+        middleware: [
+          modRewrite [
+            '!\\.\\w+$ /index.html [L]'
+          ]
+        ]
         routes:
           '/bower_components': 'bower_components'
 
