@@ -21,21 +21,24 @@ defaultTasks = [
   'remove-code'
   'copy-files'
   'aws-publish'
+  'e2e'
 ]
 
 fileExists = require 'file-exists'
 
 loadTasks = (configs = {}, tasks = null) ->
-  defaultTaskPath          = configs.__dirname + '/node_modules/appirio-gulp-tasks'
-  defaultTaskPath          = null unless fileExists defaultTaskPath
-  taskPath                 = configs.taskPath || defaultTaskPath || __dirname
-  tasks                    = tasks || defaultTasks
-  configs.karma            = configs.karma || {}
-  configs.karma.configFile = taskPath + '/karma.conf.coffee'
-  pluginsPath              = taskPath + '/node_modules/gulp-load-plugins'
-  browserSyncPath          = taskPath + '/node_modules/browser-sync'
-  karmaPath                = taskPath + '/node_modules/karma'
-  configPath               = taskPath + '/node_modules/config'
+  defaultTaskPath            = configs.__dirname + '/node_modules/appirio-gulp-tasks'
+  defaultTaskPath            = null unless fileExists defaultTaskPath
+  taskPath                   = configs.taskPath || defaultTaskPath || __dirname
+  tasks                      = tasks || defaultTasks
+  configs.karma              = configs.karma || {}
+  configs.e2eTest            = configs.e2eTest || {}
+  configs.karma.configFile   = taskPath + '/karma.conf.coffee'
+  configs.e2eTest.configFile = taskPath + '/protractor.config.js'
+  pluginsPath                = taskPath + '/node_modules/gulp-load-plugins'
+  browserSyncPath            = taskPath + '/node_modules/browser-sync'
+  karmaPath                  = taskPath + '/node_modules/karma'
+  configPath                 = taskPath + '/node_modules/config'
 
   gulpLoadPluginsOptions =
     config: taskPath + '/package.json'
@@ -54,8 +57,8 @@ loadTasks = (configs = {}, tasks = null) ->
     module = require(taskPath + '/tasks/' + task)
     module gulp, $, configs
 
-  gulp.task 'default', ['clean'], ->
-    gulp.start 'build'
+  # gulp.task 'default', ['clean'], ->
+  #   gulp.start 'build'
 
 module.exports =
   loadTasks: loadTasks

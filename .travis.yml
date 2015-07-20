@@ -2,16 +2,19 @@ language: node_js
 node_js:
 - 0.10.25
 install:
+- npm install -g npm
 - npm install -g gulp
 - npm install -g bower
 - npm install
 - bower install
 script:
-- gulp test
 - gulp clean
 - gulp preprocessors
+- gulp test
 - gulp useref
 - gulp copy-files
+- gulp remove-code
+- gulp e2e
 - gulp optimize-build
 - gulp finger-print
 - gulp finger-print-replace
