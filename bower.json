@@ -6,7 +6,7 @@
     "bower_components"
   ],
   "devDependencies": {
-    "appirio-tech-api-schemas": "git@github.com:appirio-tech/api-schemas#3.x.x",
+    "appirio-tech-api-schemas": "3.x.x",
     "angular": "~1.4.3",
     "angular-ui-router": "~0.2.15"
   },
