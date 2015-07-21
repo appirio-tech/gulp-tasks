@@ -6,7 +6,7 @@
     "node": ">=0.10.0"
   },
   "devDependencies": {
-    "appirio-work-styles": "git@github.com:appirio-tech/work-styles#^0.0.104"
+    "appirio-work-styles": "0.x.x"
   },
   "dependencies": {
     "autoprefixer-core": "^4.0.2",
