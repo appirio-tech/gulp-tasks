@@ -1,6 +1,6 @@
 {
   "name": "appirio-gulp-tasks",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "",
   "engines": {
     "node": ">=0.10.0"
@@ -61,9 +61,8 @@
     "wiredep": "^3.0.0-beta"
   },
   "ignore": [
-    "**/*",
-    "!tasks/**/*",
-    "!gulpfile.coffee",
-    "!gulpfile.js"
+    "app",
+    "example",
+    "tests"
   ]
 }

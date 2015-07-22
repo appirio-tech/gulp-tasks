@@ -14,5 +14,8 @@ exports.config = {
     ui: 'bdd',
     reporter: 'list',
     timeout: 180000
+  },
+  capabilities: {
+    'browserName': 'firefox'
   }
 };
