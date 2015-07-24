@@ -2,7 +2,7 @@
 defaultTests        = ['tests/e2e/**/*.{js,coffee}']
 defualtConfigFile   = '/protractor.config.js'
 defaultServeFolders = ['dist']
-defaultPort         = 9000
+defaultPort         = 9999
 
 module.exports = (gulp, $, configs) ->
   defualtConfigFile   = configs.__dirname + defualtConfigFile

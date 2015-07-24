@@ -2,7 +2,7 @@ h1Text = null
 
 describe 'login', ->
   beforeEach (done) ->
-    browser.get 'http://localhost:9000'
+    browser.get 'http://localhost:9999'
 
     $('h1').getText().then (value) ->
       h1Text = value
