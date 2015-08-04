@@ -7,10 +7,10 @@ module.exports = (gulp, $, configs) ->
 
   gulp.task 'uglify', ->
     options =
-      mangle  : false
-      compress: false
+      mangle  : true
+      compress: true
       output  :
-        beautify: true
+        beautify: false
 
     uglify = $.uglify options
     src    = gulp.src uglifyFiles
