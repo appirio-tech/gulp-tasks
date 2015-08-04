@@ -7,7 +7,7 @@ module.exports = (gulp, $, configs) ->
 
   gulp.task 'uglify', ->
     options =
-      mangle  : true
+      mangle  : false
       compress: true
       output  :
         beautify: false
