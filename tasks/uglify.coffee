@@ -6,12 +6,7 @@ module.exports = (gulp, $, configs) ->
   defaultDistFolder = configs.distFolder || defaultDistFolder
 
   gulp.task 'uglify', ->
-    options =
-      mangle  : false
-      compress: true
-      output  :
-        beautify: false
-
+    options = {}
     uglify = $.uglify options
     src    = gulp.src uglifyFiles
     dest   = gulp.dest defaultDistFolder
