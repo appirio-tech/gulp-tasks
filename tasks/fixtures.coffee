@@ -1,4 +1,7 @@
-defaultFixtureFiles = 'bower_components/appirio-tech-api-schemas/swagger/**/*.json'
+defaultFixtureFiles = [
+  'bower_components/appirio-tech-api-schemas/swagger/**/*.json'
+  'bower_components/appirio-tech-api-schemas/apiary/**/*.json'
+]
 defaultDestPath     = '.tmp/scripts'
 defaultDestName     = 'json-fixtures.js'
 
