@@ -1,6 +1,6 @@
 defaultFiles      = '.tmp/index.html'
 defaultDestPath   = 'dist'
-defaultSearchPath = ['.tmp', 'app', '.']
+defaultSearchPath = ['.tmp', 'app', '.', 'src']
 
 module.exports = (gulp, $, configs) ->
   files      = configs.useref?.files || defaultFiles
