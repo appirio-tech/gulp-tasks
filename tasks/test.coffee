@@ -29,6 +29,7 @@ module.exports = (gulp, $, configs) ->
   bowerFiles   = wiredep(wiredepOptions)['js']
 
   defaultFiles = [
+    configs.__dirname + '/example/scripts/mock.coffee'
     configs.__dirname + '/tests/specs/helper.coffee'
     configs.__dirname + '/.tmp/scripts/json-fixtures.js'
     configs.__dirname + '/app/**/*.module.coffee'
