@@ -5,7 +5,11 @@ defaultCoverageReporter =
   dir: 'coverage'
 
 module.exports = (gulp, $, configs) ->
-  defaultCoffeeFiles   = [configs.__dirname + '/tests/specs/**/*.coffee'] # Dont include coverage files
+  # Dont include coverage files
+  defaultCoffeeFiles   = [
+    configs.__dirname + '/example/scripts/mock.coffee'
+    configs.__dirname + '/tests/specs/**/*.coffee'
+  ]
   coffeeFiles          = configs.karma?.coffeeFiles || defaultCoffeeFiles
   coffeeFiles          = [coffeeFiles] if typeof(coffeeFiles) == 'string'
   defaultCoverageFiles = [
@@ -29,9 +33,9 @@ module.exports = (gulp, $, configs) ->
   bowerFiles   = wiredep(wiredepOptions)['js']
 
   defaultFiles = [
+    configs.__dirname + '/.tmp/scripts/json-fixtures.js'
     configs.__dirname + '/example/scripts/mock.coffee'
     configs.__dirname + '/tests/specs/helper.coffee'
-    configs.__dirname + '/.tmp/scripts/json-fixtures.js'
     configs.__dirname + '/app/**/*.module.coffee'
     configs.__dirname + '/app/**/*.module.js'
     configs.__dirname + '/src/**/*.module.coffee'
