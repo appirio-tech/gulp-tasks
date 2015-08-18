@@ -2,6 +2,7 @@ module.exports = (gulp, $, configs) ->
 
   dependencies = [
     'ng-constant'
+    'fixtures'
     'template-cache'
     'scss'
     'coffee'

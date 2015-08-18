@@ -19,7 +19,7 @@ for folder in defaultServeFolders
   defaultReloadFiles.push reload
 
 module.exports = (gulp, $, configs) ->
-  depedencies   = ['ng-constant', 'fixtures', 'coffee', 'scss', 'template-cache']
+  depedencies   = ['preprocessors']
   port          = configs.serve?.port || defaultPort
   reloadFiles   = configs.serve?.reloadFiles || defaultReloadFiles
   scssFiles     = configs.serve?.scssFiles || defaultSCSSFiles
