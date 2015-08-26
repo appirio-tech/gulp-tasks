@@ -6,7 +6,7 @@ module.exports = (gulp, $, configs) ->
 
   gulp.task 'template-cache', ['jade'], ->
     for config in configs.templateCache
-      if config.files
+      if config?.files
         src      = gulp.src config.files
         destPath = config.destPath || defaultDestPath
         dest     = gulp.dest destPath

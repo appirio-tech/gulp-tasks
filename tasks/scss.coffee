@@ -3,7 +3,7 @@ defaultSCSSFiles = [
   'example/**/*.scss'
   'src/**/*.scss'
 ]
-defaultTempFolder       = '.tmp'
+defaultTempFolder = '.tmp'
 
 module.exports = (gulp, $, configs) ->
   scssFiles        = configs.scss?.scssFiles || defaultSCSSFiles
