@@ -4,12 +4,11 @@ defaultSCSSFiles = [
   'src/**/*.scss'
 ]
 defaultTempFolder       = '.tmp'
-defaultSCSSIncludePaths = require('appirio-work-styles').includePaths
 
 module.exports = (gulp, $, configs) ->
   scssFiles        = configs.scss?.scssFiles || defaultSCSSFiles
   tempFolder       = configs.scss?.tempFolder || defaultTempFolder
-  scssIncludePaths = configs.scss?.includePaths || defaultSCSSIncludePaths
+  scssIncludePaths = configs.scss?.includePaths || require('appirio-work-styles').includePaths
 
   gulp.task 'scss', ->
     onError = ->
