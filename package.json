@@ -1,12 +1,13 @@
 {
   "name": "appirio-gulp-tasks",
-  "version": "3.0.3",
+  "version": "0.0.0",
   "description": "",
   "engines": {
     "node": ">=0.10.0"
   },
   "devDependencies": {
-    "appirio-work-styles": "0.x.x"
+    "appirio-work-styles": "0.x.x",
+    "npm-prepublish": "^1.2.1"
   },
   "dependencies": {
     "autoprefixer-core": "^4.0.2",
