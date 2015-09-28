@@ -11,6 +11,9 @@ configs.templateCache =
   root  : 'views/'
   module: 'appirio-tech-messaging'
 
+configs.cdnify =
+  url: '//work.topcoder-dev.com'
+
 
 ### END CONFIG ###
 
