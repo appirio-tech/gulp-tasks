@@ -11,6 +11,7 @@ module.exports = (gulp, $, configs) ->
   gulp.task 'preprocessors', dependencies, ->
     # nothing
 
+  ## DEPRECATED, DO NOT USE ##
   optimizeDependencies = [
     'cdnify'
     'uglify'
