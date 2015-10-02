@@ -11,7 +11,11 @@ module.exports = (gulp, $, configs) ->
   gulp.task 'cdnify', ->
     options =
       defaultCDNBase: configs.cdnify?.url
-      files         : ['/**/*.{gif,png,jpg,jpeg,svg,woff2,js,css}']
+      files         : [
+        '/styles/**/*.css'
+        '/scripts/**/*.js'
+        '/images/**/*.{gif,png,jpg,jpeg,svg}'
+      ]
 
     cdnizer = $.cdnizer options
     src     = gulp.src cdnifyFiles
