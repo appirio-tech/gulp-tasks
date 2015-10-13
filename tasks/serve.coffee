@@ -37,7 +37,7 @@ module.exports = (gulp, $, configs) ->
       server:
         baseDir: serveFolders
         middleware: [
-          modRewrite [
+          modRewrite: [
             '!\\.\\w+$ /index.html [L]'
           ]
         ]
