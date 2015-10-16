@@ -6,6 +6,7 @@ module.exports = (gulp, $, configs) ->
     'template-cache'
     'scss'
     'coffee'
+    'bower-images'
   ]
 
   gulp.task 'preprocessors', dependencies, ->

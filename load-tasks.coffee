@@ -22,6 +22,7 @@ defaultTasks = [
   'copy-files'
   'aws-publish'
   'e2e'
+  'bower-images'
 ]
 
 fileExists = require 'file-exists'

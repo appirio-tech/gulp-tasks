@@ -1,7 +1,7 @@
 defaultFiles =
   'dist': '**/*.{gif,png,jpg,jpeg,svg}'
 
-defaultBases = ['app/', 'src/']
+defaultBases = ['app/', 'src/', '.tmp/']
 
 module.exports = (gulp, $, configs) ->
   files = configs.copyFiles?.files || defaultFiles
@@ -11,7 +11,11 @@ module.exports = (gulp, $, configs) ->
   gulp.task 'copy-files', ->
     for destPath, srcFiles of files
       for base in bases
-        src  = gulp.src srcFiles, base: base
+        options =
+          base: base
+          dot: true
+
+        src  = gulp.src srcFiles, options
         dest = gulp.dest destPath
 
         src.pipe dest
