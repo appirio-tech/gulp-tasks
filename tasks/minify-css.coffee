@@ -7,7 +7,7 @@ module.exports = (gulp, $, configs) ->
 
   gulp.task 'minify-css', ->
     options   = {}
-    minifyCss = $.minifyCss options
+    minifyCss = $.csso options
     src       = gulp.src minifyCssFiles
     dest      = gulp.dest defaultDistFolder
 
