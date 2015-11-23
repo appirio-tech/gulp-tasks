@@ -1,15 +1,13 @@
 styleguide = require('sc5-styleguide');
 
 defaultStyleguideFiles = ['styles/**/*.scss']
-defaultTempFolder      = '.tmp'
 defaultOutputDirectory = 'styleguide'
-defaultMainSCSSFile    = '_tc-styles.scss'
+defaultMainSCSSFile    = 'main.scss'
 
 module.exports = (gulp, $, configs) ->
   scssFiles             = configs.styleguideGenerator?.scssFiles || defaultStyleguideFiles
-  tempFolder            = configs.styleguideGenerator?.tempFolder || defaultTempFolder
-  generatorIncludePaths = configs.styleguideGenerator?.includePaths || require('appirio-styles').includePaths
-  mainSCSSFile          = configs.styleguideGenerator?.includePaths || defaultMainSCSSFile
+  generatorIncludePaths = configs.styleguideGenerator?.includePaths
+  mainSCSSFile          = configs.styleguideGenerator?.mainSCSSFile || defaultMainSCSSFile
   styleguideOptions     = configs.styleguideGenerator?.options
   outputDirectory       = configs.styleguideGenerator?.options?.rootPath || defaultOutputDirectory
 
