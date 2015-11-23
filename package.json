@@ -6,7 +6,7 @@
     "node": ">=0.10.0"
   },
   "devDependencies": {
-    "appirio-work-styles": "0.x.x",
+    "appirio-styles": "0.x.x",
     "npm-prepublish": "^1.2.1"
   },
   "dependencies": {
