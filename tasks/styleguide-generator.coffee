@@ -40,4 +40,5 @@ module.exports = (gulp, $, configs) ->
 
   gulp.task 'watch-styleguide', ['styleguide'], ->
     # Start watching changes and update styleguide whenever changes are detected
+    # Not currently wired up to watch more than one directory/generated styleguide
     gulp.watch defaultStyleguideOptions.scssFiles, ['styleguide']
