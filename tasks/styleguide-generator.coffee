@@ -20,7 +20,7 @@ module.exports = (gulp, $, configs) ->
 
     generate = styleguide.generate styleguideOptions
     src      = gulp.src scssFiles
-    dest     = outputDirectory
+    dest     = gulp.dest outputDirectory
 
     src.pipe(generate).pipe dest
 
@@ -32,7 +32,7 @@ module.exports = (gulp, $, configs) ->
     scss        = $.sass options
     applyStyles = styleguide.applyStyles()
     src         = gulp.src mainSCSSFile
-    dest        = outputDirectory
+    dest        = gulp.dest outputDirectory
 
     src.pipe(scss).pipe(applyStyles()).pipe dest
 
