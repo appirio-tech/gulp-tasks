@@ -34,7 +34,7 @@ module.exports = (gulp, $, configs) ->
     src         = gulp.src mainSCSSFile
     dest        = gulp.dest outputDirectory
 
-    src.pipe(scss).pipe(applyStyles()).pipe dest
+    src.pipe(scss).pipe(applyStyles).pipe dest
 
   gulp.task 'styleguide', ['styleguide:generate', 'styleguide:applystyles']
 
