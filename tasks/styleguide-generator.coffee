@@ -1,40 +1,40 @@
 styleguide = require('sc5-styleguide');
 
-defaultStyleguideFiles = ['styles/**/*.scss']
-defaultOutputDirectory = 'styleguide'
-defaultMainSCSSFile    = 'main.scss'
+defaultStyleguideOptions =
+  options:
+    title: 'My Styleguide'
+    server: true
+    port: 3000
+    rootPath: 'styleguide'
+
+  scssFiles: ['styles/**/*.scss']
+
+  mainSCSSFile: 'main.scss'
 
 module.exports = (gulp, $, configs) ->
-  scssFiles             = configs.styleguideGenerator?.scssFiles || defaultStyleguideFiles
+  styleguideOptions     = configs.styleguideGenerator || defaultStyleguideOptions
   generatorIncludePaths = configs.styleguideGenerator?.includePaths
-  mainSCSSFile          = configs.styleguideGenerator?.mainSCSSFile || defaultMainSCSSFile
-  styleguideOptions     = configs.styleguideGenerator?.options
-  outputDirectory       = configs.styleguideGenerator?.options?.rootPath || defaultOutputDirectory
 
   gulp.task 'styleguide:generate', ->
-    if !styleguideOptions
-      red = $.util.colors.red 'Styleguide options are required to run this task.'
-      $.util.beep()
-      $.util.log red
-      process.exit(1)
+    for styleguideConfig in styleguideOptions
+      generate = styleguide.generate styleguideConfig.options
+      src      = gulp.src styleguideConfig.scssFiles
+      dest     = gulp.dest styleguideConfig.options.rootPath
 
-    generate = styleguide.generate styleguideOptions
-    src      = gulp.src scssFiles
-    dest     = gulp.dest outputDirectory
-
-    src.pipe(generate).pipe dest
+      src.pipe(generate).pipe dest
 
   gulp.task 'styleguide:applystyles', ->
     options =
       includePaths: generatorIncludePaths
       errLogToConsole: true
 
-    scss        = $.sass options
-    applyStyles = styleguide.applyStyles()
-    src         = gulp.src mainSCSSFile
-    dest        = gulp.dest outputDirectory
+    for styleguideConfig in styleguideOptions
+      scss        = $.sass options
+      applyStyles = styleguide.applyStyles()
+      src         = gulp.src styleguideConfig.mainSCSSFile
+      dest        = gulp.dest styleguideConfig.options.rootPath
 
-    src.pipe(scss).pipe(applyStyles).pipe dest
+      src.pipe(scss).pipe(applyStyles).pipe dest
 
   gulp.task 'styleguide', ['styleguide:generate', 'styleguide:applystyles']
 
