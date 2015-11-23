@@ -16,6 +16,7 @@ module.exports = (gulp, $, configs) ->
       red = $.util.colors.red 'Styleguide options are required to run this task.'
       $.util.beep()
       $.util.log red
+      process.exit(1)
 
     generate = styleguide.generate styleguideOptions
     src      = gulp.src scssFiles
