@@ -13,12 +13,13 @@ defaultStyleguideOptions =
   mainSCSSFile: 'main.scss'
 
 module.exports = (gulp, $, configs) ->
-  styleguideOptions     = configs.styleguideGenerator || defaultStyleguideOptions
   generatorIncludePaths = configs.styleguideGenerator?.includePaths
 
   gulp.task 'styleguide:generate', ->
     if argv.team && configs.styleguideGenerator
-      styleguideOptions = styleguideOptions[argv.team]
+      styleguideOptions = configs.styleguideGenerator[argv.team]
+    else
+      styleguideOptions = defaultStyleguideOptions
 
     generate = styleguide.generate styleguideOptions.options
     src      = gulp.src styleguideOptions.scssFiles
@@ -28,8 +29,11 @@ module.exports = (gulp, $, configs) ->
 
   gulp.task 'styleguide:applystyles', ->
     if argv.team && configs.styleguideGenerator
-      styleguideOptions = styleguideOptions[argv.team]
+      styleguideOptions = configs.styleguideGenerator[argv.team]
+    else
+      styleguideOptions = defaultStyleguideOptions
 
+    console.log 'style options: ', styleguideOptions
     options =
       includePaths: generatorIncludePaths
       errLogToConsole: true
@@ -48,6 +52,6 @@ module.exports = (gulp, $, configs) ->
     watchFiles = defaultStyleguideOptions.scssFiles
 
     if argv.team && configs.styleguideGenerator
-      watchFiles = styleguideOptions[argv.team].scssFiles
+      watchFiles = config.styleguideGenerator[argv.team].scssFiles
 
     gulp.watch watchFiles, ['styleguide']
