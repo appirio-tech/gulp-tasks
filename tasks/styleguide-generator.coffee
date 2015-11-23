@@ -1,4 +1,5 @@
 styleguide = require('sc5-styleguide');
+argv       = require('yargs').argv
 
 defaultStyleguideOptions =
   options:
@@ -16,29 +17,37 @@ module.exports = (gulp, $, configs) ->
   generatorIncludePaths = configs.styleguideGenerator?.includePaths
 
   gulp.task 'styleguide:generate', ->
-    for styleguideConfig in styleguideOptions
-      generate = styleguide.generate styleguideConfig.options
-      src      = gulp.src styleguideConfig.scssFiles
-      dest     = gulp.dest styleguideConfig.options.rootPath
+    if argv.team && configs.styleguideGenerator
+      styleguideOptions = styleguideOptions[argv.team]
 
-      src.pipe(generate).pipe dest
+    generate = styleguide.generate styleguideOptions.options
+    src      = gulp.src styleguideOptions.scssFiles
+    dest     = gulp.dest styleguideOptions.options.rootPath
+
+    src.pipe(generate).pipe dest
 
   gulp.task 'styleguide:applystyles', ->
+    if argv.team && configs.styleguideGenerator
+      styleguideOptions = styleguideOptions[argv.team]
+
     options =
       includePaths: generatorIncludePaths
       errLogToConsole: true
 
-    for styleguideConfig in styleguideOptions
-      scss        = $.sass options
-      applyStyles = styleguide.applyStyles()
-      src         = gulp.src styleguideConfig.mainSCSSFile
-      dest        = gulp.dest styleguideConfig.options.rootPath
+    scss        = $.sass options
+    applyStyles = styleguide.applyStyles()
+    src         = gulp.src styleguideOptions.mainSCSSFile
+    dest        = gulp.dest styleguideOptions.options.rootPath
 
-      src.pipe(scss).pipe(applyStyles).pipe dest
+    src.pipe(scss).pipe(applyStyles).pipe dest
 
   gulp.task 'styleguide', ['styleguide:generate', 'styleguide:applystyles']
 
   gulp.task 'watch-styleguide', ['styleguide'], ->
     # Start watching changes and update styleguide whenever changes are detected
-    # Not currently wired up to watch more than one directory/generated styleguide
-    gulp.watch defaultStyleguideOptions.scssFiles, ['styleguide']
+    watchFiles = defaultStyleguideOptions.scssFiles
+
+    if argv.team && configs.styleguideGenerator
+      watchFiles = styleguideOptions[argv.team].scssFiles
+
+    gulp.watch watchFiles, ['styleguide']
