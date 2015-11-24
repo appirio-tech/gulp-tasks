@@ -56,6 +56,30 @@ Files to use. Default: `'dist': '**/*.{gif,png,jpg,jpeg,svg}'`
 ##### configs.copyFiles.base
 Option passed to copy-files module. Default: `app/`
 
+### `styleguide`
+
+`gulp styleguide` generates the [SC5 Styleguide](https://github.com/SC5/sc5-styleguide).
+`gulp watch-styleguide` runs `gulp styleguide` and allows live refresh.
+
+To pass in your own options for the styleguide, follow this example:
+
+```
+configs.styleguideGenerator =
+  topcoder:
+    options:
+      title: 'Topcoder Styleguide'
+      server: true
+      port: 3333
+      rootPath: 'tc-styleguide'
+
+    scssFiles: ['styles/**/*.scss', '!styles/work/**/*.scss']
+
+    mainSCSSFile: 'app/styles/topcoder/_tc-styles.scss'
+```
+
+Then, pass the team name as a flag to the gulp command:
+`gulp watch-styleguide --team topcoder`
+
 ## Useful alias
 ```
 alias gserve='nvm use; gulp clean; gulp serve'
