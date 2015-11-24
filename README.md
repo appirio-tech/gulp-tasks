@@ -60,7 +60,7 @@ Option passed to copy-files module. Default: `app/`
 
 `gulp styleguide` generates the [SC5 Styleguide](https://github.com/SC5/sc5-styleguide).
 
-`gulp watch-styleguide` runs `gulp styleguide` and allows live refresh.
+`gulp watch-styleguide` runs `gulp styleguide` and triggers a live refresh upon any changes to SCSS files.
 
 To pass in your own options for the styleguide, follow this example:
 
