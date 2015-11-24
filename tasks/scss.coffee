@@ -8,7 +8,11 @@ defaultTempFolder = '.tmp'
 module.exports = (gulp, $, configs) ->
   scssFiles        = configs.scss?.scssFiles || defaultSCSSFiles
   tempFolder       = configs.scss?.tempFolder || defaultTempFolder
-  scssIncludePaths = configs.scss?.includePaths || require('appirio-styles').includePaths
+  scssIncludePaths = configs.scss?.includePaths || [
+    configs.__dirname + '/node_modules/appirio-work-styles/node_modules/node-neat/node_modules/node-bourbon/node_modules/bourbon/app/assets/stylesheets'
+    configs.__dirname + '/node_modules/appirio-work-styles/node_modules/node-neat/node_modules/bourbon-neat/app/assets/stylesheets'
+    configs.__dirname + '/node_modules/appirio-work-styles/styles'
+  ]
 
   gulp.task 'scss', ->
     onError = ->
