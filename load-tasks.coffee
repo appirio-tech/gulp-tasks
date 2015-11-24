@@ -23,6 +23,7 @@ defaultTasks = [
   'aws-publish'
   'e2e'
   'bower-images'
+  'styleguide-generator'
 ]
 
 fileExists = require 'file-exists'
