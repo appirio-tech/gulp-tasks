@@ -2,6 +2,7 @@ defaultCleanFiles = [
   '.tmp'
   'dist'
   'coverage'
+  'build'
 ]
 
 module.exports = (gulp, $, configs) ->
