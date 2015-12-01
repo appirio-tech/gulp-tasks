@@ -7,11 +7,16 @@ defaultNgConstants =
   AUTH0_TOKEN_NAME        : 'userJWTToken'
   AUTH0_REFRESH_TOKEN_NAME: 'userRefreshJWTToken'
 
-defaultDestPath = '.tmp/scripts'
+defaultDestPath   = '.tmp/scripts'
+defaultFileName   = 'constants.js'
+defaultModuleName = 'app.constants'
 
 module.exports = (gulp, $, configs) ->
-  destPath  = configs.ngConstants?.destPath || defaultDestPath
-  constants = {}
+  destPath           = configs.ngConstants?.destPath || defaultDestPath
+  defaultNgConstants = configs.ngConstants?.defaultConstants || defaultNgConstants
+  fileName           = configs.ngConstants?.fileName || defaultFileName
+  moduleName         = configs.ngConstants?.options?.name || defaultModuleName
+  constants          = {}
 
   for key, defaultConstant of defaultNgConstants
     envVal         = configs.env.getVal key
@@ -19,11 +24,11 @@ module.exports = (gulp, $, configs) ->
 
   gulp.task 'ng-constant', ->
     options =
-      name     : 'app.constants'
+      name     : moduleName
       constants: constants
       stream   : true
 
-    dest = gulp.dest destPath
+    dest   = gulp.dest destPath
+    rename = $.rename fileName
 
-    $.ngConstant(options).pipe dest
-
+    $.ngConstant(options).pipe(rename).pipe dest
