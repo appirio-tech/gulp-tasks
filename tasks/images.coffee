@@ -14,3 +14,9 @@ module.exports = (gulp, $, configs) ->
     dest           = gulp.dest destPath
 
     src.pipe(optimizeImages).pipe dest
+
+  gulp.task 'images:move-skills', ->
+    src  = gulp.src './assets/images/skills/*.*'
+    dest = gulp.dest './build/images/skills'
+
+    src.pipe dest
