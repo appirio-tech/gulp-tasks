@@ -1,7 +1,7 @@
 module.exports = (gulp, $, configs) ->
   gulp.task 'wiredep', ['jade'], ->
     # Injects bower css/js and app js files into index.jade
-    wiredepOptions = configs.wiredep.options
+    wiredepOptions = configs.wiredep.options || {}
     options        = configs.wiredep
     wiredep        = require('wiredep').stream;
 
@@ -20,8 +20,7 @@ module.exports = (gulp, $, configs) ->
       endtag: '//- endinject',
       ignorePath: 'assets/'})
 
-
-    src.pipe(wiredep).pipe(injectJS).pipe(injectNonBowerJS).pipe dest
+    src.pipe(wiredep).pipe(injectAppJS).pipe(injectNonBowerJS).pipe dest
 
   gulp.task 'inject', ['wiredep', 'scss', 'template-cache'], ->
     # Injects app css into index.jade
