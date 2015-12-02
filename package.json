@@ -40,6 +40,7 @@
     "gulp-jscs": "^3.0.2",
     "gulp-jshint": "^2.0.0",
     "gulp-load-plugins": "^0.8.0",
+    "gulp-minify-html": "^1.0.4",
     "gulp-ng-constant": "^0.3.0",
     "gulp-plumber": "^1.0.0",
     "gulp-protractor": "^1.0.0",
