@@ -12,8 +12,9 @@ module.exports = (gulp, $, configs) ->
         dest     = gulp.dest destPath
         fileName = config.fileName || defaultFileName
         options  =
-          root  : config.root
-          module: config.module
+          root      : config.root
+          module    : config.module
+          standAlone: config.standAlone
 
         templateCache = $.angularTemplatecache fileName, options
 
