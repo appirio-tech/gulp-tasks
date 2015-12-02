@@ -43,9 +43,9 @@ module.exports = (gulp, $, configs) ->
     autoprefixer     = $.autoprefixer autoprefixerOps
 
     src
-      .pipe(sourceMaps)
-      .pipe(scss)
+      .pipe sourceMaps
+      .pipe scss
       .pipe($.if(autoprefixerOps, autoprefixer))
-      .pipe($.if(replaceOptions, replace)
-      .pipe(soureceMapsWrite)
+      .pipe($.if(replaceOptions, replace))
+      .pipe soureceMapsWrite
       .pipe dest
