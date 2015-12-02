@@ -6,7 +6,7 @@ module.exports = (gulp, $, configs) ->
   destPath  = configs.fonts?.destPath || defaultDestPath
 
   gulp.task 'fonts', ->
-    src  = gulp.src srcFiles
+    src  = gulp.src fontFiles
     dest = gulp.dest destPath
 
     src.pipe dest
