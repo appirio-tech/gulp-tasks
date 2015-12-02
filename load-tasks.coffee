@@ -5,6 +5,7 @@ defaultTasks = [
   'jade'
   'fonts'
   'images'
+  'linters'
   'scss'
   'clean'
   'serve'
