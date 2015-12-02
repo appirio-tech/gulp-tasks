@@ -25,6 +25,8 @@ module.exports = (gulp, $, configs) ->
 
   gulp.task 'inject', ['wiredep', 'scss', 'template-cache'], ->
     # Injects app css into index.jade
+    options = configs.wiredep.options
+
     src  = gulp.src options.index
     dest = gulp.dest options.destPath
 
