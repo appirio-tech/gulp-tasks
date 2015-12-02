@@ -18,9 +18,9 @@ module.exports = (gulp, $, configs) ->
   gulp.task 'optimize', ['inject', 'ng-constant', 'images'], ->
     # Optimizing the JavaScript, CSS, and HTML
     assets      = $.useref.assets userefOptions
-    cssFilter   = $.filter '**/*.css'
-    jsLibFilter = $.filter '**/vendor.js'
-    jsAppFilter = $.filter '**/app.js'
+    cssFilter   = $.filter '**/*.css', restore: true
+    jsLibFilter = $.filter '**/vendor.js', restore: true
+    jsAppFilter = $.filter '**/app.js', restore: true
 
     imageStream  = gulp.src '.tmp/**/*.{svg,png,jpg,jpeg,gif}'
     userefStream = gulp.src indexHTML
@@ -33,15 +33,15 @@ module.exports = (gulp, $, configs) ->
       .pipe assets
       .pipe cssFilter
       .pipe $.csso()
-      .pipe cssFilter.restore()
+      .pipe cssFilter.restore
       .pipe jsLibFilter
       .pipe $.uglify()
-      .pipe jsLibFilter.restore()
+      .pipe jsLibFilter.restore
       .pipe jsAppFilter
       .pipe $.if(writeSourceMaps, $.sourcemaps.init())
       .pipe $.ngAnnotate()
       .pipe $.uglify()
-      .pipe jsAppFilter.restore()
+      .pipe jsAppFilter.restore
       .pipe assets.restore()
       .pipe $.useref()
 
