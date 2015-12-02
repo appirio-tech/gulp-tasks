@@ -9,6 +9,7 @@ defaultTasks = [
   'scss'
   'clean'
   'inject'
+  'optimize'
   'serve'
   'build'
   'test'
