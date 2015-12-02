@@ -8,6 +8,7 @@ defaultTasks = [
   'linters'
   'scss'
   'clean'
+  'inject'
   'serve'
   'build'
   'test'
