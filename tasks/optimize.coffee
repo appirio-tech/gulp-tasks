@@ -14,8 +14,8 @@ module.exports = (gulp, $, configs) ->
   assetPrefix       = configs.optimize?.assetPrefix || undefined
   destPath          = configs.optimize?.destPath || defaultDestPath
 
-  # gulp.task 'optimize', ['inject', 'test', 'ng-constants', 'images'], ->
-  gulp.task 'optimize', ['inject', 'ng-constants', 'images'], ->
+  # gulp.task 'optimize', ['inject', 'test', 'ng-constant', 'images'], ->
+  gulp.task 'optimize', ['inject', 'ng-constant', 'images'], ->
     # Optimizing the JavaScript, CSS, and HTML
     assets      = $.useref.assets userefOptions
     cssFilter   = $.filter '**/*.css'
