@@ -4,6 +4,7 @@ defaultTasks = [
   'coffee'
   'jade'
   'fonts'
+  'images'
   'scss'
   'clean'
   'serve'
