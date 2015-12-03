@@ -7,6 +7,7 @@ module.exports = (gulp, $, configs) ->
     runSequence(
       'clean'
       ['optimize', 'fonts']
+      'images:move-skills'
       done
     )
 
