@@ -24,7 +24,7 @@ module.exports = (gulp, $, configs) ->
 
     src
       .pipe wiredep
-      .pipe($.inject(gulp.src(config.testlibraries),
+      .pipe($.inject(gulp.src(config.testLibraries),
         {name: 'inject:testlibraries', read: false}))
       .pipe($.inject(gulp.src(config.nonBowerScripts),
         {name: 'inject:nonBowerScripts', read: false}))
