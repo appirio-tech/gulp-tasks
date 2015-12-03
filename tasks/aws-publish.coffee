@@ -2,11 +2,12 @@ defaultAwsPublishFiles = ['dist/**/*', '!dist/index.html']
 defaultAwsPublishIndex = 'dist/index.html'
 
 module.exports = (gulp, $, configs) ->
-  bucket = configs.env.getVal 'AWS_BUCKET', ''
-  key    = configs.env.getVal 'AWS_KEY', ''
-  secret = configs.env.getVal 'AWS_SECRET', ''
-  files  = configs.awsPublishFiles || defaultAwsPublishFiles
-  index  = configs.awsPublishIndex || defaultAwsPublishIndex
+  bucket = configs.awsPublish?.bucket || configs.env.getVal 'AWS_BUCKET', ''
+  key    = configs.awsPublish?.key || configs.env.getVal 'AWS_KEY', ''
+  secret = configs.awsPublish?.secret || configs.env.getVal 'AWS_SECRET', ''
+  files  = configs.awsPublish?.files || configs.awsPublishFiles || defaultAwsPublishFiles
+  index  = configs.awsPublish?.index || configs.awsPublishIndex || defaultAwsPublishIndex
+  sync   = configs.awsPublish?.sync || false
 
   gulp.task 'aws-publish', ->
     options =
@@ -24,8 +25,9 @@ module.exports = (gulp, $, configs) ->
       'Cache-Control': 'private, no-store, no-cache, must-revalidate, max-age=0'
 
     publishIndex = publisher.publish indexHeaders
+    sync         = $.if sync, publisher.sync()
 
-    gulp.src(index).pipe(gzip).pipe(publishIndex).pipe(reporter)
+    gulp.src(index).pipe(gzip).pipe(publishIndex).pipe(sync).pipe(reporter)
 
     # Publish all other files
     filesHeaders =
@@ -33,4 +35,4 @@ module.exports = (gulp, $, configs) ->
 
     publishFiles = publisher.publish filesHeaders
 
-    gulp.src(files).pipe(gzip).pipe(publishFiles).pipe(reporter)
+    gulp.src(files).pipe(gzip).pipe(publishFiles).pipe(sync).pipe(reporter)
