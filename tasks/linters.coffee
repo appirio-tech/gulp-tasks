@@ -9,7 +9,6 @@ module.exports = (gulp, $, configs) ->
   jsFiles = configs.linters?.srcFiles || defaultFiles
 
   gulp.task 'vet', ->
-
     src = gulp.src jsFiles
 
     src
