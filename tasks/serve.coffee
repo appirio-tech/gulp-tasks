@@ -46,7 +46,7 @@ module.exports = (gulp, $, configs) ->
         baseDir: serveFolders
         middleware: [
           modRewrite [
-            '!\\.\\w+$ /index.html [L]'
+            '^[^\\.]*$ /index.html [L]'
           ]
         ]
         routes:
@@ -76,7 +76,7 @@ module.exports = (gulp, $, configs) ->
         baseDir: specServeFolders
         middleware: [
           modRewrite [
-            '!\\.\\w+$ /index.html [L]'
+            '^[^\\.]*$ /index.html [L]'
           ]
         ]
         routes:
