@@ -6,6 +6,7 @@ defaultSCSSFiles    = []
 defaultJadeFiles    = []
 defaultCoffeeFiles  = []
 defaultReloadFiles  = []
+defaultDependencies = ['preprocessors']
 
 for folder in defaultServeFolders
   scss   = folder + '/**/*.scss'
@@ -19,15 +20,17 @@ for folder in defaultServeFolders
   defaultReloadFiles.push reload
 
 module.exports = (gulp, $, configs) ->
-  depedencies   = ['preprocessors']
-  port          = configs.serve?.port || defaultPort
-  reloadFiles   = configs.serve?.reloadFiles || defaultReloadFiles
-  scssFiles     = configs.serve?.scssFiles || defaultSCSSFiles
-  jadeFiles     = configs.serve?.jadeFiles || defaultJadeFiles
-  coffeeFiles   = configs.serve?.coffeeFiles || defaultCoffeeFiles
-  serveFolders  = configs.serve?.serveFolders || defaultServeFolders
+  depedencies      = configs.serve?.dependencies || defaultDependencies
+  port             = configs.serve?.port || defaultPort
+  reloadFiles      = configs.serve?.reloadFiles || defaultReloadFiles
+  scssFiles        = configs.serve?.scssFiles || defaultSCSSFiles
+  jadeFiles        = configs.serve?.jadeFiles || defaultJadeFiles
+  coffeeFiles      = configs.serve?.coffeeFiles || defaultCoffeeFiles
+  serveFolders     = configs.serve?.serveFolders || defaultServeFolders
+  optionOverwrites = configs.serve?.options || {}
 
   gulp.task 'serve', depedencies, ->
+
     options =
       open       : false
       notify     : false
@@ -43,6 +46,8 @@ module.exports = (gulp, $, configs) ->
         ]
         routes:
           '/bower_components': 'bower_components'
+
+    _.assign options, optionOverwrites
 
     $.browserSync options
 
