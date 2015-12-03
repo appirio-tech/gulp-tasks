@@ -56,8 +56,9 @@ module.exports = (gulp, $, configs) ->
 
     $.browserSync options
 
-    gulp.watch(reloadFiles).on 'change', ->
-      $.browserSync.reload()
+    if !options.files?.length
+      gulp.watch(reloadFiles).on 'change', ->
+        $.browserSync.reload()
 
     gulp.watch scssFiles, ['scss']
     gulp.watch jadeFiles, ['template-cache']
@@ -85,8 +86,9 @@ module.exports = (gulp, $, configs) ->
 
     $.browserSync options
 
-    gulp.watch(reloadFiles).on 'change', ->
-      $.browserSync.reload()
+    if !options.files?.length
+      gulp.watch(reloadFiles).on 'change', ->
+        $.browserSync.reload()
 
     gulp.watch scssFiles, ['scss']
     gulp.watch jadeFiles, ['template-cache']
