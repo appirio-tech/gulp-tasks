@@ -23,16 +23,17 @@ for folder in defaultServeFolders
   defaultReloadFiles.push reload
 
 module.exports = (gulp, $, configs) ->
-  depedencies      = configs.serve?.dependencies || defaultDependencies
-  specDependencies = configs.serve?.specDependencies || defaultSpecDependencies
-  port             = configs.serve?.port || defaultPort
-  reloadFiles      = configs.serve?.reloadFiles || defaultReloadFiles
-  scssFiles        = configs.serve?.scssFiles || defaultSCSSFiles
-  jadeFiles        = configs.serve?.jadeFiles || defaultJadeFiles
-  coffeeFiles      = configs.serve?.coffeeFiles || defaultCoffeeFiles
-  serveFolders     = configs.serve?.serveFolders || defaultServeFolders
-  specServeFolders = configs.serve?.specServeFolders || defaultSpecServeFolders
-  optionOverwrites = configs.serve?.options || {}
+  depedencies          = configs.serve?.dependencies || defaultDependencies
+  specDependencies     = configs.serve?.specDependencies || defaultSpecDependencies
+  port                 = configs.serve?.port || defaultPort
+  reloadFiles          = configs.serve?.reloadFiles || defaultReloadFiles
+  scssFiles            = configs.serve?.scssFiles || defaultSCSSFiles
+  jadeFiles            = configs.serve?.jadeFiles || defaultJadeFiles
+  coffeeFiles          = configs.serve?.coffeeFiles || defaultCoffeeFiles
+  serveFolders         = configs.serve?.serveFolders || defaultServeFolders
+  specServeFolders     = configs.serve?.specServeFolders || defaultSpecServeFolders
+  optionOverwrites     = configs.serve?.options || {}
+  specOptionOverwrites = configs.serve?.specOptions || {}
 
   gulp.task 'serve', depedencies, ->
     options =
@@ -80,7 +81,7 @@ module.exports = (gulp, $, configs) ->
         routes:
           '/bower_components': 'bower_components'
 
-    _.assign options, optionOverwrites
+    _.assign options, specOptionOverwrites
 
     $.browserSync options
 
