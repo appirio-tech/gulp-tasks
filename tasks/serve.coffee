@@ -45,6 +45,7 @@ module.exports = (gulp, $, configs) ->
       server:
         baseDir: serveFolders
         middleware: [
+          # https://github.com/BrowserSync/browser-sync/issues/554
           modRewrite [
             '^[^\\.]*$ /index.html [L]'
           ]
