@@ -1,4 +1,5 @@
 modRewrite = require 'connect-modrewrite'
+_          = require 'lodash'
 
 defaultPort             = 9000
 defaultServeFolders     = ['src', 'app', 'example', '.tmp']
