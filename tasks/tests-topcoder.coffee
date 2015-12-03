@@ -23,7 +23,7 @@ module.exports = (gulp, $, configs) ->
     karma.start karmaOptions, karmaCompleted
 
   gulp.task 'test:topcoder', ['template-cache', 'ng-constant'], (done) ->
-    runTest true, done
+    startTests true, done
 
   gulp.task 'autotest:topcoder', ['vet', 'template-cache', 'ng-constant'], (done) ->
-    runTest false, done
+    startTests false, done
