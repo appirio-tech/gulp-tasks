@@ -1,15 +1,17 @@
 defaultAwsPublishFiles = ['dist/**/*', '!dist/index.html']
 defaultAwsPublishIndex = 'dist/index.html'
+defaultDependencies    = []
 
 module.exports = (gulp, $, configs) ->
-  bucket = configs.awsPublish?.bucket || configs.env.getVal 'AWS_BUCKET', ''
-  key    = configs.awsPublish?.key || configs.env.getVal 'AWS_KEY', ''
-  secret = configs.awsPublish?.secret || configs.env.getVal 'AWS_SECRET', ''
-  files  = configs.awsPublish?.files || configs.awsPublishFiles || defaultAwsPublishFiles
-  index  = configs.awsPublish?.index || configs.awsPublishIndex || defaultAwsPublishIndex
-  sync   = configs.awsPublish?.sync || false
+  bucket       = configs.awsPublish?.bucket || configs.env.getVal 'AWS_BUCKET', ''
+  key          = configs.awsPublish?.key || configs.env.getVal 'AWS_KEY', ''
+  secret       = configs.awsPublish?.secret || configs.env.getVal 'AWS_SECRET', ''
+  files        = configs.awsPublish?.files || configs.awsPublishFiles || defaultAwsPublishFiles
+  index        = configs.awsPublish?.index || configs.awsPublishIndex || defaultAwsPublishIndex
+  sync         = configs.awsPublish?.sync || false
+  dependencies = configs.awsPublish?.dependencies || defaultDependencies
 
-  gulp.task 'aws-publish', ->
+  gulp.task 'aws-publish', dependencies, ->
     options =
       accessKeyId    : key
       secretAccessKey: secret
