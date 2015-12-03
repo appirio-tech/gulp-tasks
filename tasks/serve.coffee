@@ -72,7 +72,7 @@ module.exports = (gulp, $, configs) ->
       reloadDelay: 1000
       logPrefix  : configs.__dirname
       server:
-        baseDir: serveFolders
+        baseDir: specServeFolders
         middleware: [
           modRewrite [
             '!\\.\\w+$ /index.html [L]'
