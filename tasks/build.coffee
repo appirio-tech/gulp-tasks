@@ -11,7 +11,7 @@ module.exports = (gulp, $, configs) ->
       done
     )
 
-  gulp.task 'build-specs:topcoder', ['templatecache', 'ngConstants'], ->
+  gulp.task 'build-specs:topcoder', ['template-cache', 'ng-constant'], ->
     # Build the spec runner
     wiredep        = require('wiredep').stream;
     config         = configs.wiredep
