@@ -72,6 +72,7 @@
     "karma-mocha": "^0.1.4",
     "karma-phantomjs-launcher": "^0.1.4",
     "karma-sinon": "^1.0.3",
+    "lodash": "^3.10.1",
     "main-bower-files": "^2.5.0",
     "merge-stream": "^1.0.0",
     "node-env-file": "^0.1.7",
