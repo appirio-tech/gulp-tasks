@@ -13,6 +13,7 @@ defaultTasks = [
   'serve'
   'build'
   'test'
+  'tests-topcoder'
   'ng-constant'
   'coveralls'
   'fixtures'
