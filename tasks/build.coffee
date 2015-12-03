@@ -1,7 +1,6 @@
 runSequence = require 'run-sequence'
 
 module.exports = (gulp, $, configs) ->
-
   gulp.task 'build:topcoder', (done) ->
     # Build everything
     runSequence(
@@ -40,7 +39,6 @@ module.exports = (gulp, $, configs) ->
       .pipe($.inject(gulp.src(config.templateCacheFile),
         {name: 'inject:templates', read: false}))
       .pipe dest
-
 
   dependencies = [
     'ng-constant'
