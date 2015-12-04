@@ -7,14 +7,18 @@ module.exports = (gulp, $, configs) ->
   gulp.task 'template-cache', ['jade'], ->
     for config in configs.templateCache
       if config?.files
-        src      = gulp.src config.files
-        destPath = config.destPath || defaultDestPath
-        dest     = gulp.dest destPath
-        fileName = config.fileName || defaultFileName
-        options  =
-          root  : config.root
-          module: config.module
+        src               = gulp.src config.files
+        destPath          = config.destPath || defaultDestPath
+        dest              = gulp.dest destPath
+        fileName          = config.fileName || defaultFileName
+        minifyHtmlOptions = config.minifyHtml || {}
 
+        options =
+          root      : config.root
+          module    : config.module
+          standAlone: config.standAlone
+
+        minifyHtml    = $.minifyHtml minifyHtmlOptions
         templateCache = $.angularTemplatecache fileName, options
 
-        src.pipe(templateCache).pipe dest
+        src.pipe(minifyHtml).pipe(templateCache).pipe dest
