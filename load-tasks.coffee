@@ -26,7 +26,7 @@ defaultTasks = [
   'useref'
   'remove-code'
   'copy-files'
-  'aws-publish'
+  'deploy'
   'e2e'
   'bower-images'
   'styleguide-generator'
