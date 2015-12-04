@@ -13,15 +13,15 @@ defaultRouterOptions   =
     '^.+$': '$&'
 
 module.exports = (gulp, $, configs) ->
-  bucket        = configs.awsPublish?.bucket || configs.env.getVal 'AWS_BUCKET', ''
-  key           = configs.awsPublish?.key || configs.env.getVal 'AWS_KEY', ''
-  secret        = configs.awsPublish?.secret || configs.env.getVal 'AWS_SECRET', ''
-  files         = configs.awsPublish?.files || defaultAwsPublishFiles
-  sync          = configs.awsPublish?.sync || false
-  dependencies  = configs.awsPublish?.dependencies || defaultDependencies
-  routerOptions = configs.awsPublish?.routerOptions || defaultRouterOptions
+  bucket        = configs.deploy?.bucket || configs.env.getVal 'AWS_BUCKET', ''
+  key           = configs.deploy?.key || configs.env.getVal 'AWS_KEY', ''
+  secret        = configs.deploy?.secret || configs.env.getVal 'AWS_SECRET', ''
+  files         = configs.deploy?.files || defaultAwsPublishFiles
+  sync          = configs.deploy?.sync || false
+  dependencies  = configs.deploy?.dependencies || defaultDependencies
+  routerOptions = configs.deploy?.routerOptions || defaultRouterOptions
 
-  gulp.task 'aws-publish', dependencies, ->
+  gulp.task 'deploy', dependencies, ->
     options =
       accessKeyId    : key
       secretAccessKey: secret
