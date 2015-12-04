@@ -5,7 +5,7 @@ defaultJadeFiles   = [
 ]
 defaultTempFolder  = '.tmp'
 defaultJadeData    = null
-defaultJadeReplace = null
+defaultJadeReplace = {}
 defaultJadeOptions =
   pretty: false
 
@@ -27,9 +27,11 @@ module.exports = (gulp, $, configs) ->
     getData = (file) ->
       jadeData
 
+
+
     jade    = $.jade options
     data    = $.data getData
-    replace = $.if !!jadeReplace, $.replace(jadeReplace.pattern[0], jadeReplace.pattern[1])
+    replace = $.if !!jadeReplace, $.replace.apply(jadeReplace.pattern)
     plumber = $.plumber errorHandler: onError
     src     = gulp.src jadeFiles
     dest    = gulp.dest tempFolder
