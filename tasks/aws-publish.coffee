@@ -1,15 +1,25 @@
-defaultAwsPublishFiles = ['dist/**/*', '!dist/index.html']
-defaultAwsPublishIndex = 'dist/index.html'
+merge = require 'merge-stream'
+
+defaultAwsPublishFiles = ['build/**/*']
 defaultDependencies    = []
+defaultRouterOptions   =
+  cache:
+    cacheTime: 94608000
+    allowTransform: false
+    public: true
+  routes:
+    '^.+\\.html':
+      cacheTime: 0
+    '^.+$': '$&'
 
 module.exports = (gulp, $, configs) ->
-  bucket       = configs.awsPublish?.bucket || configs.env.getVal 'AWS_BUCKET', ''
-  key          = configs.awsPublish?.key || configs.env.getVal 'AWS_KEY', ''
-  secret       = configs.awsPublish?.secret || configs.env.getVal 'AWS_SECRET', ''
-  files        = configs.awsPublish?.files || configs.awsPublishFiles || defaultAwsPublishFiles
-  index        = configs.awsPublish?.index || configs.awsPublishIndex || defaultAwsPublishIndex
-  sync         = configs.awsPublish?.sync || false
-  dependencies = configs.awsPublish?.dependencies || defaultDependencies
+  bucket        = configs.awsPublish?.bucket || configs.env.getVal 'AWS_BUCKET', ''
+  key           = configs.awsPublish?.key || configs.env.getVal 'AWS_KEY', ''
+  secret        = configs.awsPublish?.secret || configs.env.getVal 'AWS_SECRET', ''
+  files         = configs.awsPublish?.files || defaultAwsPublishFiles
+  sync          = configs.awsPublish?.sync || false
+  dependencies  = configs.awsPublish?.dependencies || defaultDependencies
+  routerOptions = configs.awsPublish?.routerOptions || defaultRouterOptions
 
   gulp.task 'aws-publish', dependencies, ->
     options =
@@ -18,23 +28,19 @@ module.exports = (gulp, $, configs) ->
       params:
         Bucket: bucket
 
-    gzip      = $.awspublish.gzip()
-    reporter  = $.awspublish.reporter()
     publisher = $.awspublish.create options
+    reporter  = $.awspublish.reporter()
+    sync      = $.if sync, publisher.sync()
+    cache     = publisher.cache()
+    gzip      = $.awspublish.gzip()
+    src       = gulp.src files
+    router    = $.awspublishRouter routerOptions
+    publish   = publisher.publish()
 
-    # Publish index
-    indexHeaders =
-      'Cache-Control': 'private, no-store, no-cache, must-revalidate, max-age=0'
-
-    publishIndex = publisher.publish indexHeaders
-    sync         = $.if sync, publisher.sync()
-
-    gulp.src(index).pipe(gzip).pipe(publishIndex).pipe(sync).pipe(reporter)
-
-    # Publish all other files
-    filesHeaders =
-      'Cache-Control': 'max-age=315360000, no-transform, public'
-
-    publishFiles = publisher.publish filesHeaders
-
-    gulp.src(files).pipe(gzip).pipe(publishFiles).pipe(sync).pipe(reporter)
+    src
+      .pipe gzip
+      .pipe router
+      .pipe cache
+      .pipe publish
+      .pipe sync
+      .pipe reporter
