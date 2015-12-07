@@ -14,5 +14,7 @@ module.exports = (gulp, $, configs) ->
     src
       .pipe $.jscs()
       .pipe $.jshint()
+      .pipe $.jscs.reporter()
+      .pipe $.jscs.reporter('fail')
       .pipe $.jshint.reporter('jshint-stylish', verbose: true)
       .pipe $.jshint.reporter('fail')
