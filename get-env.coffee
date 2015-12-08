@@ -2,7 +2,7 @@
 
 path        = require 'path'
 fs          = require 'fs'
-nodeEnvFile = require './node_modules/node-env-file'
+nodeEnvFile = require 'node-env-file'
 
 getVal = (name, defaultVal) ->
   hasOwnProperty = process.env.hasOwnProperty name

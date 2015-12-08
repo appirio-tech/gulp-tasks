@@ -32,41 +32,39 @@ defaultTasks = [
   'styleguide-generator'
 ]
 
-fileExists = require 'file-exists'
+gulp            = require 'gulp'
+gulpLoadPlugins = require 'gulp-load-plugins'
+browserSync     = require 'browser-sync'
+karma           = require 'karma'
 
 loadTasks = (configs = {}, tasks = null) ->
-  defaultTaskPath            = configs.__dirname + '/node_modules/appirio-gulp-tasks'
-  defaultTaskPath            = null unless fileExists defaultTaskPath
-  taskPath                   = configs.taskPath || defaultTaskPath || __dirname
+  basePath                   = configs.__dirname || __dirname
+  nodePath                   = basePath + '/node_modules'
   tasks                      = tasks || defaultTasks
   configs.karma              = configs.karma || {}
   configs.e2eTest            = configs.e2eTest || {}
-  configs.karma.configFile   = taskPath + '/karma.conf.coffee'
-  configs.e2eTest.configFile = taskPath + '/protractor.config.js'
-  pluginsPath                = taskPath + '/node_modules/gulp-load-plugins'
-  browserSyncPath            = taskPath + '/node_modules/browser-sync'
-  karmaPath                  = taskPath + '/node_modules/karma'
-  configPath                 = taskPath + '/node_modules/config'
+  configs.karma.configFile   = basePath + '/karma.conf.coffee'
+  configs.e2eTest.configFile = basePath + '/protractor.config.js'
 
-  gulpLoadPluginsOptions =
-    config: taskPath + '/package.json'
+  if basePath.includes 'gulp-tasks'
+    gulpTasksPath = basePath
+  else
+    gulpTasksPath = basePath + '/node_modules/appirio-gulp-tasks'
 
-  gulp           = require 'gulp'
-  plugins        = require pluginsPath
-  $              = plugins gulpLoadPluginsOptions
-  $.browserSync  = require browserSyncPath
-  $.karma        = require(karmaPath).server
-  configs.env    = require './get-env.coffee'
-  envFile        = configs.envFile || '.env'
+  $ = gulpLoadPlugins
+    config: gulpTasksPath + '/package.json'
+
+  $.browserSync = browserSync
+  $.karma       = karma.server
+
+  configs.env   = require './get-env.coffee'
+  envFile       = configs.envFile || '.env'
 
   configs.env.readFile envFile
 
   for task in tasks
-    module = require(taskPath + '/tasks/' + task)
+    module = require gulpTasksPath + '/tasks/' + task
     module gulp, $, configs
-
-  # gulp.task 'default', ['clean'], ->
-  #   gulp.start 'build'
 
 module.exports =
   loadTasks: loadTasks
