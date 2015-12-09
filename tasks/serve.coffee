@@ -61,7 +61,7 @@ module.exports = (gulp, $, configs) ->
       gulp.watch(reloadFiles).on 'change', ->
         $.browserSync.reload()
 
-      gulp.watch reloadFiles, ['useref-temp']
+      gulp.watch reloadFiles, ['useref']
 
     gulp.watch scssFiles, ['scss']
     gulp.watch jadeFiles, ['template-cache']
