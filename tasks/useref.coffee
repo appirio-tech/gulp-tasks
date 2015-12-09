@@ -1,13 +1,15 @@
-defaultFiles      = '.tmp/index.html'
-defaultDestPath   = 'dist'
-defaultSearchPath = ['.tmp', 'app', '.', 'src']
+defaultFiles        = '.tmp/index.html'
+defaultDestPath     = 'dist'
+defaultDestTempPath = 'dist-temp'
+defaultSearchPath   = ['.tmp', 'app', '.', 'src']
 
 module.exports = (gulp, $, configs) ->
-  files      = configs.useref?.files || defaultFiles
-  destPath   = configs.useref?.destPath || defaultDestPath
-  searchPath = configs.useref?.searchPath || defaultSearchPath
+  files        = configs.useref?.files || defaultFiles
+  destPath     = configs.useref?.destPath || defaultDestPath
+  destTempPath = configs.useref?.destTempPath || defaultDestTempPath
+  searchPath   = configs.useref?.searchPath || defaultSearchPath
 
-  gulp.task 'useref', ->
+  useref = (destPath) ->
     assetsOptions =
       searchPath: searchPath
 
@@ -18,3 +20,12 @@ module.exports = (gulp, $, configs) ->
     dest    = gulp.dest destPath
 
     src.pipe(assets).pipe(restore).pipe(useref).pipe dest
+
+  gulp.task 'useref', ->
+    useref destPath
+
+  # useref-temp is used for creating a folder that can be symlink
+  gulp.task 'useref-temp', ->
+    destPath = 'dist-temp'
+
+    useref destTempPath
