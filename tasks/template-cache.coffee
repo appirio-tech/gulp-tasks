@@ -1,3 +1,5 @@
+eventStream = require 'event-stream'
+
 defaultDestPath = '.tmp/scripts'
 defaultFileName = 'templates.js'
 
@@ -5,7 +7,7 @@ module.exports = (gulp, $, configs) ->
   configs.templateCache = [configs.templateCache] unless configs.templateCache?.length
 
   gulp.task 'template-cache', ['jade'], ->
-    for config in configs.templateCache
+    templateCacheConfigs = configs.templateCache.map (config) ->
       if config?.files
         src               = gulp.src config.files
         destPath          = config.destPath || defaultDestPath
@@ -21,4 +23,6 @@ module.exports = (gulp, $, configs) ->
         minifyHtml    = $.minifyHtml minifyHtmlOptions
         templateCache = $.angularTemplatecache fileName, options
 
-        src.pipe(minifyHtml).pipe(templateCache).pipe dest
+        src.pipe(minifyHtml).pipe(templateCache).pipe(dest)
+
+    eventStream.merge templateCacheConfigs
