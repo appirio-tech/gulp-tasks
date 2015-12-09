@@ -9,7 +9,7 @@ module.exports = (gulp, $, configs) ->
   destTempPath = configs.useref?.destTempPath || defaultDestTempPath
   searchPath   = configs.useref?.searchPath || defaultSearchPath
 
-  useref = (destPath) ->
+  runUseref = (destPath) ->
     assetsOptions =
       searchPath: searchPath
 
@@ -22,10 +22,10 @@ module.exports = (gulp, $, configs) ->
     src.pipe(assets).pipe(restore).pipe(useref).pipe dest
 
   gulp.task 'useref', ->
-    useref destPath
+    runUseref destPath
 
   # useref-temp is used for creating a folder that can be symlink
   gulp.task 'useref-temp', ->
     destPath = 'dist-temp'
 
-    useref destTempPath
+    runUseref destTempPath
