@@ -61,6 +61,8 @@ module.exports = (gulp, $, configs) ->
       gulp.watch(reloadFiles).on 'change', ->
         $.browserSync.reload()
 
+      gulp.watch reloadFiles, ['useref-temp']
+
     gulp.watch scssFiles, ['scss']
     gulp.watch jadeFiles, ['template-cache']
     gulp.watch coffeeFiles, ['coffee']
@@ -91,8 +93,6 @@ module.exports = (gulp, $, configs) ->
     if !options.files?.length
       gulp.watch(reloadFiles).on 'change', ->
         $.browserSync.reload()
-
-      gulp.watch reloadFiles, ['useref-temp']
 
     gulp.watch scssFiles, ['scss']
     gulp.watch jadeFiles, ['template-cache']
