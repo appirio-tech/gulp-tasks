@@ -16,7 +16,7 @@ module.exports = (gulp, $, configs) ->
       $.util.log red
       console.log arguments
 
-    coffee  = $.coffee bare: false
+    coffee  = $.cjsx bare: false
     plumber = $.plumber errorHandler: onError
     src     = gulp.src coffeeFiles
     dest    = gulp.dest tempFolder
