@@ -46,6 +46,7 @@ module.exports = (gulp, $, configs) ->
     'template-cache'
     'scss'
     'coffee'
+    'cjsx'
     'bower-images'
   ]
 

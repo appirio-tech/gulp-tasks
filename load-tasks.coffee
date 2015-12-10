@@ -2,6 +2,7 @@
 
 defaultTasks = [
   'coffee'
+  'cjsx'
   'jade'
   'fonts'
   'images'

@@ -7,6 +7,7 @@ defaultSpecServeFolders = ['./']
 defaultSCSSFiles        = []
 defaultJadeFiles        = []
 defaultCoffeeFiles      = []
+defaultCjsxFiles        = []
 defaultReloadFiles      = []
 defaultDependencies     = ['preprocessors']
 defaultSpecDependencies = ['build-specs:topcoder']
@@ -15,11 +16,13 @@ for folder in defaultServeFolders
   scss   = folder + '/**/*.scss'
   jade   = folder + '/**/*.jade'
   coffee = folder + '/**/*.coffee'
+  cjsx   = folder + '/**/*.cjsx'
   reload = folder + '/**/*.{js,css,html}'
 
   defaultSCSSFiles.push scss
   defaultJadeFiles.push jade
   defaultCoffeeFiles.push coffee
+  defaultCjsxFiles.push cjsx
   defaultReloadFiles.push reload
 
 module.exports = (gulp, $, configs) ->
@@ -30,6 +33,7 @@ module.exports = (gulp, $, configs) ->
   scssFiles            = configs.serve?.scssFiles || defaultSCSSFiles
   jadeFiles            = configs.serve?.jadeFiles || defaultJadeFiles
   coffeeFiles          = configs.serve?.coffeeFiles || defaultCoffeeFiles
+  cjsxFiles            = configs.serve?.cjsxFiles || defaultCjsxFiles
   serveFolders         = configs.serve?.serveFolders || defaultServeFolders
   specServeFolders     = configs.serve?.specServeFolders || defaultSpecServeFolders
   optionOverwrites     = configs.serve?.options || {}
@@ -66,6 +70,8 @@ module.exports = (gulp, $, configs) ->
     gulp.watch scssFiles, ['scss']
     gulp.watch jadeFiles, ['template-cache']
     gulp.watch coffeeFiles, ['coffee']
+    gulp.watch cjsxFiles, ['cjsx']
+
 
   gulp.task 'serve-specs', specDependencies, ->
     # Run the spec runner
