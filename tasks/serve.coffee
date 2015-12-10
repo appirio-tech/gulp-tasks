@@ -15,11 +15,13 @@ for folder in defaultServeFolders
   scss   = folder + '/**/*.scss'
   jade   = folder + '/**/*.jade'
   coffee = folder + '/**/*.coffee'
+  cjsx   = folder + '/**/*.cjsx'
   reload = folder + '/**/*.{js,css,html}'
 
   defaultSCSSFiles.push scss
   defaultJadeFiles.push jade
   defaultCoffeeFiles.push coffee
+  defaultCjsxFiles.push cjsx
   defaultReloadFiles.push reload
 
 module.exports = (gulp, $, configs) ->
@@ -66,6 +68,8 @@ module.exports = (gulp, $, configs) ->
     gulp.watch scssFiles, ['scss']
     gulp.watch jadeFiles, ['template-cache']
     gulp.watch coffeeFiles, ['coffee']
+    gulp.watch cjsxFiles, ['cjsx']
+
 
   gulp.task 'serve-specs', specDependencies, ->
     # Run the spec runner
@@ -97,3 +101,4 @@ module.exports = (gulp, $, configs) ->
     gulp.watch scssFiles, ['scss']
     gulp.watch jadeFiles, ['template-cache']
     gulp.watch coffeeFiles, ['coffee']
+    gulp.watch cjsxFiles, ['cjsx']
