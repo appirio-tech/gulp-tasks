@@ -10,7 +10,7 @@ module.exports = (config) ->
     basePath: './'
 
     # testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['mocha', 'chai', 'sinon']
+    frameworks: ['phantomjs-shim', 'mocha', 'chai', 'sinon']
 
     # list of files / patterns to exclude
     exclude: []

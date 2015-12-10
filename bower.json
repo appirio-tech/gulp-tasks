@@ -8,7 +8,8 @@
   "devDependencies": {
     "appirio-tech-api-schemas": "3.x.x",
     "angular": "~1.4.3",
-    "angular-ui-router": "~0.2.15"
+    "angular-ui-router": "~0.2.15",
+    "react": "~0.14.3"
   },
   "dependencies": {
     "jquery": "~2.1.4"
