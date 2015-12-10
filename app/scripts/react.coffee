@@ -1,4 +1,4 @@
-ReactDOM.render <App locale="en-US" userID={1} />, container
+ReactDOM.render <App locale="en-US" />, container
 
 sayHello = (name) ->
   console.log "Hello #{name}"
