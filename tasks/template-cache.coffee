@@ -1,10 +1,13 @@
 eventStream = require 'event-stream'
 
-defaultDestPath = '.tmp/scripts'
-defaultFileName = 'templates.js'
+defaultTemplateCacheConfig =
+  files: './app/**/*.js'
+  destPath: '.tmp/scripts'
+  fileName: 'templates.js'
 
 module.exports = (gulp, $, configs) ->
-  configs.templateCache = [configs.templateCache] unless configs.templateCache?.length
+  templateCacheConfig = configs.templateCache || defaultTemplateCacheConfig
+  configs.templateCache = [templateCacheConfig] unless templateCacheConfig.length
 
   gulp.task 'template-cache', ['jade'], ->
     templateCacheConfigs = configs.templateCache.map (config) ->
