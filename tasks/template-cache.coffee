@@ -13,9 +13,9 @@ module.exports = (gulp, $, configs) ->
     templateCacheConfigs = configs.templateCache.map (config) ->
       if config?.files
         src               = gulp.src config.files
-        destPath          = config.destPath || defaultDestPath
+        destPath          = config.destPath
         dest              = gulp.dest destPath
-        fileName          = config.fileName || defaultFileName
+        fileName          = config.fileName
         minifyHtmlOptions = config.minifyHtml || {}
 
         options =
