@@ -10,12 +10,13 @@ module.exports = (gulp, $, configs) ->
   configs.templateCache = [templateCacheConfig] unless templateCacheConfig.length
 
   gulp.task 'template-cache', ['jade'], ->
+    console.log configs.templateCache
     templateCacheConfigs = configs.templateCache.map (config) ->
       if config?.files
-        src               = gulp.src config.files
-        destPath          = config.destPath
+        src               = gulp.src config.files || defaultTemplateCacheConfig.files
+        destPath          = config.destPath || defaultTemplateCacheConfig.destPath
         dest              = gulp.dest destPath
-        fileName          = config.fileName
+        fileName          = config.fileName || defaultTemplateCacheConfig.fileName
         minifyHtmlOptions = config.minifyHtml || {}
 
         options =
