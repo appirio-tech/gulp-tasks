@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- 0.12.7
+- 5.1.1
 install:
 - npm install -g gulp
 - npm install -g bower
@@ -31,3 +31,11 @@ env:
   global:
   - secure: i8ArAaveiEco7Prf8lBhckyC+Wq0b0PspzAqd1xCLQAoBEyOhMQDCFwzIWxQsJdJC/xOskQzxVKP2Rtw8fqM6vXbzD0x0Xnb+aygR86NKeSBn4WVORjNlO/uQOwwjKSgveZzrirAjuIQP0vR+VxF6ZPcRKbOJo3vTtT9L4nsys2pWaxS18w7Ds9kjNnANOM+9p0hIDvXNFT8TM0ZfuY486OIwMGAjYcjgoa2bg2Wv5tF5Ymp1yxXRm4tJunJvkcx797ZGFhkxSF0oPVRsHwvoEg0jbZ5P8SN3NnaVxXukrWUfWVAw9VYpqvmIVw2EzYcqUCojt++vP8OTN6ALwTWeWT31oLl9TezESuGgQehxHSvVYo2Ei51psWX9bBmnIzE+Ub6JDCdM+svBbEPnLCx2JC8KW0lkHsid7SMqXQtZ5w7vVvRycsAQhIPQBaLOL2Cfjqimwo9dqOgiAd8PJ0IuzQrBCCJW3dSZGPlRuXtL61l0H4s3LXZJaNsg4QwZ17MH+TxTDYsvbdYPKTmcJ2IzscDwOY8jPiBkF6qDYfJY8xPAdFpqzsLBSzg4MjAJcKmE+T6uip9Jm3hDBaW9nDJry9JAzNsnpKpuXmxl9UyZulQZ5Rspbx/PHbw/5s7In3DN4DdnCyX1ICE+JKuUyB5oT36C0kXvtPsi4Vhn7czL5U=
   - secure: YAUBPzzFVKG+IKOUtfloZfm8NI2ObX5LV98A+ZFcdmWCFdUigVxr4o24mMCQ3oht9kfovS8Ld9OH16+ItBrBQxEpwikqmSvKuR06xqHE1Cm/s8GbtiFnTZLpumGPK/pmsYcL8ZiUWxmSOd+oY+Ki64fhw5T7SEy1ESnd5HNADUBZHeiSrYOrQWdhoEsyPhq3H6uC5KCjMboYCMagEGUoKM9z3JbJxi+cEs90SJpH/je25iphlVyAReW5S/XvIUhygOxD2vYszXuvyyfvUjMKZTzAG71og9DYxyIJpTtrDy6O1quZTy3cvGagjUEwCgI9/fQRhRZ0kQ+8d+r8jg9GK9fMXj3U+6bjh/30VJLe+nr9qhqnSV8MPjH9/H4YVMGEDwwi57jWzlRFKbbaHPcs1/I+D90LESrFDp0+mh9S7jTtTL5edKMNaDut9kQB2W+NorG9uFSqovya0y7XbuigQYMPml5aoR4RpvjJ7r0B1PrCckoQ+NYGrYV3GES0e8U416kMcE4XjHFL5TCDy9AcXOLxT0IHC5pThBuyHJ2Z2JIPJnpFJzujW6zMQs8CW7kqSNHLxKHyuxzYMvMNhdAYOF3NHSGgF6qgkAwiTjkNvVwr0skM765rqE6MYBLKojVeyjcOMQqSfYpKCnpKizzfyx9qzAxOyWvfsh0pgvGqC7w=
+  matrix:
+  - CXX=g++-4.8
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
